@@ -2014,9 +2014,334 @@
     .mobile-bar-whatsapp {
       color: #25d366;
     }
+
+    /* ==========================================================================
+       Admin Suite Styles (Luxury Black & Gold VIP Panel)
+       ========================================================================== */
+    .admin-top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: linear-gradient(135deg, #1c1009 0%, #0d0603 100%);
+      border-bottom: 2px solid var(--gold-main);
+      color: #f7ede2;
+      padding: 10px 20px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      flex-wrap: wrap;
+    }
+
+    body.admin-mode-active .admin-top-bar {
+      display: flex;
+    }
+
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(184, 141, 64, 0.22);
+      border: 1px solid var(--gold-main);
+      color: var(--gold-light);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-admin-action {
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-main) 100%);
+      color: #120904;
+      border: none;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-admin-action:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(184, 141, 64, 0.4);
+    }
+
+    .btn-admin-download {
+      background: #25d366;
+      color: #ffffff;
+    }
+
+    .btn-admin-download:hover {
+      background: #1eb956;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-admin-logout {
+      background: rgba(255, 255, 255, 0.12);
+      color: #d8c8b8;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-admin-logout:hover {
+      background: rgba(220, 53, 69, 0.25);
+      border-color: #dc3545;
+      color: #ff9999;
+    }
+
+    /* Card Admin Buttons (Edit / Delete) */
+    .card-admin-controls {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 15;
+      gap: 6px;
+    }
+
+    body.admin-mode-active .card-admin-controls {
+      display: flex;
+    }
+
+    .btn-card-admin {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      transition: var(--transition);
+    }
+
+    .btn-card-edit {
+      background: #1a1a1a;
+      color: var(--gold-light);
+      border: 1px solid var(--gold-main);
+    }
+
+    .btn-card-edit:hover {
+      background: var(--gold-main);
+      color: #120904;
+      transform: scale(1.1);
+    }
+
+    .btn-card-del {
+      background: #ffffff;
+      color: #dc3545;
+      border: 1px solid #dc3545;
+    }
+
+    .btn-card-del:hover {
+      background: #dc3545;
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    /* Admin Modals */
+    .admin-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .admin-modal-overlay.active {
+      display: flex;
+    }
+
+    .admin-modal {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: 580px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalFadeIn 0.25s ease;
+      border: 1px solid var(--border-color);
+    }
+
+    .admin-modal-header {
+      background: linear-gradient(135deg, #26160d 0%, #150a05 100%);
+      color: #f7ede2;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--gold-main);
+    }
+
+    .admin-modal-header h3 {
+      font-size: 18px;
+      font-family: var(--font-heading);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold-light);
+      margin: 0;
+    }
+
+    .admin-modal-close {
+      background: none;
+      border: none;
+      color: #d8c8b8;
+      font-size: 26px;
+      cursor: pointer;
+      line-height: 1;
+      transition: var(--transition);
+    }
+
+    .admin-modal-close:hover {
+      color: var(--gold-light);
+    }
+
+    .admin-modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .admin-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .admin-form-group label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .admin-form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text-main);
+      background: #faf8f5;
+      transition: var(--transition);
+      box-sizing: border-box;
+    }
+
+    .admin-form-control:focus {
+      outline: none;
+      border-color: var(--gold-main);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(184, 141, 64, 0.18);
+    }
+
+    .admin-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .admin-form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .admin-photo-preview-box {
+      width: 100%;
+      height: 140px;
+      border: 2px dashed #d5c4b1;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fdfbf7;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .admin-photo-preview-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .admin-photo-preview-box span.empty-placeholder {
+      font-size: 12px;
+      color: #9c8a78;
+    }
+
+    .admin-modal-footer {
+      padding: 14px 20px;
+      background: #f7f3ec;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .footer-admin-link {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.35);
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .footer-admin-link:hover {
+      color: var(--gold-light);
+    }
   </style>
 </head>
 <body>
+
+  <!-- Sticky Admin Top Bar (Visible only when logged in as Admin) -->
+  <aside id="admin-top-bar" class="admin-top-bar" aria-label="Barra de Administração">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <span class="admin-badge">🛡️ Painel ADM Ativo</span>
+      <span style="font-size: 12px; color: #d8c8b8;" class="topbar-hide-mobile">AC Perfumes Gerenciador</span>
+    </div>
+    <div class="admin-actions">
+      <button class="btn-admin-action" onclick="openAddProductModal()">
+        <span>➕</span> <span>Adicionar Produto</span>
+      </button>
+      <button class="btn-admin-action btn-admin-download" onclick="exportUpdatedIndexHtml()" title="Baixar index.html atualizado para enviar ao GitHub">
+        <span>💾</span> <span>Salvar &amp; Baixar Site</span>
+      </button>
+      <button class="btn-admin-action btn-admin-logout" onclick="logoutAdmin()">
+        <span>🚪</span> <span>Sair ADM</span>
+      </button>
+    </div>
+  </aside>
 
   <!-- Top Announcement Bar -->
   <div class="topbar">
@@ -2543,9 +2868,138 @@
 
     <div class="footer-bottom">
       <div>&copy; 2026 AC Perfumes · Todos os direitos reservados.</div>
-      <div>Fotografias originais dos frascos e caixas dos fabricantes. Consulte a disponibilidade antes de finalizar.</div>
+      <div>
+        Fotografias originais dos frascos e caixas dos fabricantes. Consulte a disponibilidade antes de finalizar.
+        · <a href="#admin" class="footer-admin-link" onclick="event.preventDefault(); openAdminLoginModal();">⚙️ Área Restrita ADM</a>
+      </div>
     </div>
   </footer>
+
+  <!-- ==========================================================================
+       Admin Suite Modals
+       ========================================================================== -->
+  <!-- Modal: Login de Administrador -->
+  <div id="admin-login-modal" class="admin-modal-overlay">
+    <div class="admin-modal" style="max-width: 440px;">
+      <div class="admin-modal-header">
+        <h3><span>🔐</span> Acesso Administrativo</h3>
+        <button type="button" class="admin-modal-close" onclick="closeAdminLoginModal()">&times;</button>
+      </div>
+      <form id="admin-login-form" onsubmit="event.preventDefault(); submitAdminLogin();">
+        <div class="admin-modal-body">
+          <p style="font-size: 13px; color: #6b5849; margin: 0 0 10px;">
+            Digite a senha master de administrador da <strong>AC Perfumes</strong> para gerenciar os produtos da loja:
+          </p>
+          <div class="admin-form-group">
+            <label for="admin-pass-input">Senha Master</label>
+            <input type="password" id="admin-pass-input" class="admin-form-control" placeholder="Digite sua senha..." autocomplete="current-password" required>
+            <span style="font-size: 11px; color: #9c8a78; margin-top: 4px;">Senha padrão inicial: <code>acperfumes2026</code></span>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-action btn-admin-logout" onclick="closeAdminLoginModal()">Cancelar</button>
+          <button type="submit" class="btn-admin-action">Entrar no Painel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Cadastro / Edição de Produto -->
+  <div id="admin-product-modal" class="admin-modal-overlay">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 id="admin-modal-title"><span>✨</span> Cadastrar Produto</h3>
+        <button type="button" class="admin-modal-close" onclick="closeAdminProductModal()">&times;</button>
+      </div>
+      <form id="admin-product-form" onsubmit="event.preventDefault(); saveProductFromForm();">
+        <input type="hidden" id="admin-prod-id">
+        <div class="admin-modal-body">
+          <div class="admin-form-row">
+            <div class="admin-form-group">
+              <label for="admin-prod-name">Nome do Produto *</label>
+              <input type="text" id="admin-prod-name" class="admin-form-control" placeholder="Ex: Good Girl Blush" required>
+            </div>
+            <div class="admin-form-group">
+              <label for="admin-prod-brand">Marca / Fabricante *</label>
+              <input type="text" id="admin-prod-brand" class="admin-form-control" placeholder="Ex: Carolina Herrera" required>
+            </div>
+          </div>
+
+          <div class="admin-form-row">
+            <div class="admin-form-group">
+              <label for="admin-prod-category">Categoria *</label>
+              <select id="admin-prod-category" class="admin-form-control" onchange="autoFillBadge()" required>
+                <option value="femininos">Perfume Feminino Importado</option>
+                <option value="masculinos">Perfume Masculino Importado</option>
+                <option value="arabes">Perfume Árabe de Dubai</option>
+                <option value="bolsas">Bolsa de Luxo</option>
+              </select>
+            </div>
+            <div class="admin-form-group">
+              <label for="admin-prod-gender">Gênero</label>
+              <select id="admin-prod-gender" class="admin-form-control">
+                <option value="feminino">Feminino</option>
+                <option value="masculino">Masculino</option>
+                <option value="unissex">Unissex</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="admin-form-row">
+            <div class="admin-form-group">
+              <label for="admin-prod-volume">Volumetria / Detalhes *</label>
+              <input type="text" id="admin-prod-volume" class="admin-form-control" placeholder="Ex: Eau de Parfum 80ml, Body Splash 250ml" required>
+            </div>
+            <div class="admin-form-group">
+              <label for="admin-prod-price">Preço de Venda (R$) *</label>
+              <input type="text" id="admin-prod-price" class="admin-form-control" placeholder="Ex: 450,00" required>
+            </div>
+          </div>
+
+          <div class="admin-form-row">
+            <div class="admin-form-group">
+              <label for="admin-prod-badge-text">Texto do Selo (Badge)</label>
+              <input type="text" id="admin-prod-badge-text" class="admin-form-control" placeholder="Ex: Best-Seller, Lançamento">
+            </div>
+            <div class="admin-form-group">
+              <label for="admin-prod-badge-class">Cor do Selo</label>
+              <select id="admin-prod-badge-class" class="admin-form-control">
+                <option value="badge-feminino">Dourado Rosé (Feminino / Splash)</option>
+                <option value="badge-masculino">Dourado Escuro (Masculino)</option>
+                <option value="badge-arabe">Ouro Nobre (Árabe)</option>
+                <option value="badge-bolsa">Marrom Borgonha (Bolsa)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Foto do Produto -->
+          <div class="admin-form-group">
+            <label>Foto do Produto</label>
+            <div style="display: flex; gap: 10px; margin-bottom: 6px; flex-wrap: wrap;">
+              <label class="btn-admin-action" style="font-size: 11px; padding: 6px 14px; cursor: pointer;">
+                📷 Selecionar Foto do Celular / PC
+                <input type="file" id="admin-prod-file" accept="image/*" style="display: none;" onchange="handleAdminPhotoUpload(event)">
+              </label>
+            </div>
+            <input type="text" id="admin-prod-image" class="admin-form-control" placeholder="Ou digite o nome do arquivo (ex: perfume.jpg) ou link..." oninput="handleAdminImageNameInput(this.value)">
+            <div class="admin-photo-preview-box" style="margin-top: 8px;">
+              <span id="admin-photo-placeholder" class="empty-placeholder">Nenhuma foto selecionada</span>
+              <img id="admin-photo-preview" src="" alt="Prévia" style="display: none;">
+            </div>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="admin-prod-desc">Descrição Olfativa / Detalhes</label>
+            <textarea id="admin-prod-desc" class="admin-form-control" rows="3" placeholder="Descreva as notas olfativas, fixação ou detalhes luxuosos do produto..."></textarea>
+          </div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-action btn-admin-logout" onclick="closeAdminProductModal()">Cancelar</button>
+          <button type="submit" class="btn-admin-action">💾 Salvar Produto</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- ==========================================================================
        Storefront Database & Logic (Inlined for 100% Guaranteed Execution)
@@ -2553,8 +3007,9 @@
   <script>
     const WHATSAPP_PHONE = "5516991907811";
     const STORE_NAME = "AC Perfumes";
+    const ADMIN_DEFAULT_PASS = "acperfumes2026";
 
-    const perfumes = [
+    let perfumes = [
       // 18 Árabes
       { id: 1, name: "Monarch", brand: "Al Wataniah (Rawae'e Monarch)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 400,00", priceValue: 400.00, category: "arabes", gender: "masculino", badgeText: "Árabe Nobre", badgeClass: "badge-arabe", image: "monarch.jpg", description: "Aromático frutado com toque oriental luxuoso. Abertura refinada com oxicoco (cranberry) e mandarina, corpo de rosa búlgara, magnólia e gerânio, e fundo quente de almíscar e patchouli." },
       { id: 2, name: "Off Nature", brand: "Lattafa Pride (Art of Nature I)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 480,00", priceValue: 480.00, category: "arabes", gender: "unissex", badgeText: "Árabe Exclusivo", badgeClass: "badge-arabe", image: "off-nature.jpg", description: "Criação de alta costura da linha Lattafa Pride. Notas profundas de figo, ameixa e groselha preta sobre uma base suntuosa de couro nobre, oud (agarwood) e baunilha aveludada." },
@@ -2728,6 +3183,10 @@
           <article class="product-card" data-id="${p.id}">
             <div class="card-photo-wrapper" onclick="openModal(${p.id})">
               <span class="card-badge ${p.badgeClass}">${p.badgeText}</span>
+              <div class="card-admin-controls" onclick="event.stopPropagation()">
+                <button type="button" class="btn-card-admin btn-card-edit" title="Editar Produto" onclick="openEditProductModal(${p.id})">✏️</button>
+                <button type="button" class="btn-card-admin btn-card-del" title="Excluir Produto" onclick="deleteProduct(${p.id})">🗑️</button>
+              </div>
               <img class="card-photo" 
                    src="${p.image}" 
                    alt="${p.name}" 
@@ -2967,6 +3426,311 @@
         btn.parentElement.classList.toggle('active');
       });
     });
+
+    // ==========================================================================
+    // Admin Suite Logic (Management, Add, Edit, Delete, One-Click Export)
+    // ==========================================================================
+    let adminUploadedDataUrl = '';
+
+    function checkAdminSession() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('admin') === 'true' || urlParams.get('admin') === '1') {
+        sessionStorage.setItem('ac_perfumes_admin', 'true');
+      }
+      if (sessionStorage.getItem('ac_perfumes_admin') === 'true') {
+        document.body.classList.add('admin-mode-active');
+      }
+    }
+
+    function openAdminLoginModal() {
+      document.getElementById('admin-pass-input').value = '';
+      document.getElementById('admin-login-modal').classList.add('active');
+      setTimeout(() => document.getElementById('admin-pass-input').focus(), 150);
+    }
+
+    function closeAdminLoginModal() {
+      document.getElementById('admin-login-modal').classList.remove('active');
+    }
+
+    function submitAdminLogin() {
+      const pass = document.getElementById('admin-pass-input').value.trim();
+      const storedPass = localStorage.getItem('ac_perfumes_admin_pass') || ADMIN_DEFAULT_PASS;
+      if (pass === storedPass) {
+        sessionStorage.setItem('ac_perfumes_admin', 'true');
+        document.body.classList.add('admin-mode-active');
+        closeAdminLoginModal();
+        showToast("Bem-vindo ao Painel ADM! O gerenciador de produtos está ativo.");
+      } else {
+        alert("Senha incorreta! Verifique a senha digitada.");
+      }
+    }
+
+    function logoutAdmin() {
+      sessionStorage.removeItem('ac_perfumes_admin');
+      document.body.classList.remove('admin-mode-active');
+      showToast("Você saiu do modo administrador.");
+    }
+
+    function autoFillBadge() {
+      const cat = document.getElementById('admin-prod-category').value;
+      const badgeInput = document.getElementById('admin-prod-badge-text');
+      const classSelect = document.getElementById('admin-prod-badge-class');
+      if (!badgeInput.value || badgeInput.dataset.autofilled === '1') {
+        if (cat === 'arabes') {
+          badgeInput.value = 'Árabe de Dubai';
+          classSelect.value = 'badge-arabe';
+        } else if (cat === 'bolsas') {
+          badgeInput.value = 'Bolsa de Luxo';
+          classSelect.value = 'badge-bolsa';
+        } else if (cat === 'femininos') {
+          badgeInput.value = 'Importado Feminino';
+          classSelect.value = 'badge-feminino';
+        } else if (cat === 'masculinos') {
+          badgeInput.value = 'Importado Masculino';
+          classSelect.value = 'badge-masculino';
+        }
+        badgeInput.dataset.autofilled = '1';
+      }
+    }
+
+    function openAddProductModal() {
+      document.getElementById('admin-modal-title').innerHTML = `<span>✨</span> Cadastrar Produto`;
+      document.getElementById('admin-prod-id').value = '';
+      document.getElementById('admin-prod-name').value = '';
+      document.getElementById('admin-prod-brand').value = '';
+      document.getElementById('admin-prod-category').value = 'femininos';
+      document.getElementById('admin-prod-gender').value = 'feminino';
+      document.getElementById('admin-prod-volume').value = '';
+      document.getElementById('admin-prod-price').value = '';
+      document.getElementById('admin-prod-badge-text').value = '';
+      document.getElementById('admin-prod-badge-text').dataset.autofilled = '';
+      document.getElementById('admin-prod-desc').value = '';
+      document.getElementById('admin-prod-image').value = '';
+      document.getElementById('admin-prod-file').value = '';
+      adminUploadedDataUrl = '';
+      resetPhotoPreview();
+      autoFillBadge();
+      document.getElementById('admin-product-modal').classList.add('active');
+    }
+
+    function openEditProductModal(id) {
+      const p = perfumes.find(item => item.id === id);
+      if (!p) return;
+      document.getElementById('admin-modal-title').innerHTML = `<span>✏️</span> Editar "${p.name}"`;
+      document.getElementById('admin-prod-id').value = p.id;
+      document.getElementById('admin-prod-name').value = p.name;
+      document.getElementById('admin-prod-brand').value = p.brand;
+      document.getElementById('admin-prod-category').value = p.category;
+      document.getElementById('admin-prod-gender').value = p.gender || 'feminino';
+      document.getElementById('admin-prod-volume').value = p.volume;
+      document.getElementById('admin-prod-price').value = p.priceValue;
+      document.getElementById('admin-prod-badge-text').value = p.badgeText || '';
+      document.getElementById('admin-prod-badge-text').dataset.autofilled = '0';
+      document.getElementById('admin-prod-badge-class').value = p.badgeClass || 'badge-feminino';
+      document.getElementById('admin-prod-desc').value = p.description || '';
+      document.getElementById('admin-prod-image').value = p.image || '';
+      document.getElementById('admin-prod-file').value = '';
+      adminUploadedDataUrl = (p.image && p.image.startsWith('data:')) ? p.image : '';
+      
+      handleAdminImageNameInput(p.image || '');
+      document.getElementById('admin-product-modal').classList.add('active');
+    }
+
+    function closeAdminProductModal() {
+      document.getElementById('admin-product-modal').classList.remove('active');
+    }
+
+    function resetPhotoPreview() {
+      const prev = document.getElementById('admin-photo-preview');
+      const place = document.getElementById('admin-photo-placeholder');
+      prev.src = '';
+      prev.style.display = 'none';
+      place.style.display = 'block';
+    }
+
+    function handleAdminImageNameInput(val) {
+      const prev = document.getElementById('admin-photo-preview');
+      const place = document.getElementById('admin-photo-placeholder');
+      const trimmed = val ? val.trim() : '';
+      if (trimmed) {
+        prev.src = trimmed;
+        prev.style.display = 'block';
+        place.style.display = 'none';
+        prev.onerror = function() {
+          place.textContent = 'A imagem será carregada ao salvar no catálogo';
+          place.style.display = 'block';
+        };
+      } else {
+        resetPhotoPreview();
+      }
+    }
+
+    function handleAdminPhotoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          // Resize & compress to ~800px JPEG to keep site fast & compact
+          const canvas = document.createElement('canvas');
+          let w = img.width;
+          let h = img.height;
+          const maxDim = 800;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
+            else { w = Math.round((w * maxDim) / h); h = maxDim; }
+          }
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.86);
+
+          adminUploadedDataUrl = dataUrl;
+          const prev = document.getElementById('admin-photo-preview');
+          const place = document.getElementById('admin-photo-placeholder');
+          prev.src = dataUrl;
+          prev.style.display = 'block';
+          place.style.display = 'none';
+          document.getElementById('admin-prod-image').value = file.name;
+          showToast(`Foto "${file.name}" carregada com sucesso!`);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function saveProductFromForm() {
+      const idInput = document.getElementById('admin-prod-id').value;
+      const name = document.getElementById('admin-prod-name').value.trim();
+      const brand = document.getElementById('admin-prod-brand').value.trim();
+      const category = document.getElementById('admin-prod-category').value;
+      const gender = document.getElementById('admin-prod-gender').value;
+      const volume = document.getElementById('admin-prod-volume').value.trim();
+      const rawPrice = document.getElementById('admin-prod-price').value.replace('R$', '').trim().replace(/\./g, '').replace(',', '.');
+      const priceValue = parseFloat(rawPrice);
+
+      if (!name) {
+        alert("Por favor, digite o nome do produto.");
+        return;
+      }
+      if (isNaN(priceValue) || priceValue <= 0) {
+        alert("Por favor, digite um preço de venda válido (ex: 350,00).");
+        return;
+      }
+
+      const priceFormatted = formatBRL(priceValue);
+      const badgeText = document.getElementById('admin-prod-badge-text').value.trim() || 'Destaque';
+      const badgeClass = document.getElementById('admin-prod-badge-class').value;
+      const description = document.getElementById('admin-prod-desc').value.trim() || `${name} da linha ${brand}. Fragrância autêntica e de alta fixação.`;
+      
+      let image = adminUploadedDataUrl || document.getElementById('admin-prod-image').value.trim();
+      if (!image) {
+        image = (category === 'bolsas') ? 'bolsa-tote.svg' : 'good-girl.jpg';
+      }
+
+      if (idInput) {
+        // Edit existing product
+        const prodId = parseInt(idInput);
+        const idx = perfumes.findIndex(p => p.id === prodId);
+        if (idx !== -1) {
+          perfumes[idx] = {
+            ...perfumes[idx],
+            name, brand, category, gender, volume, priceFormatted, priceValue, badgeText, badgeClass, image, description
+          };
+          showToast(`"${name}" atualizado com sucesso!`);
+        }
+      } else {
+        // Add new product
+        const newId = (perfumes.length > 0 ? Math.max(...perfumes.map(p => p.id)) : 0) + 1;
+        const newProduct = {
+          id: newId,
+          name, brand, volume, priceFormatted, priceValue, category, gender, badgeText, badgeClass, image, description
+        };
+        perfumes.unshift(newProduct);
+        showToast(`"${name}" adicionado ao catálogo!`);
+      }
+
+      saveCustomCatalog();
+      renderProducts();
+      closeAdminProductModal();
+    }
+
+    function deleteProduct(id) {
+      const p = perfumes.find(item => item.id === id);
+      if (!p) return;
+      if (confirm(`Deseja realmente excluir o produto "${p.name}" da loja?`)) {
+        perfumes = perfumes.filter(item => item.id !== id);
+        cart = cart.filter(item => item.id !== id);
+        saveCart();
+        saveCustomCatalog();
+        renderProducts();
+        showToast(`"${p.name}" foi removido do catálogo.`);
+      }
+    }
+
+    function saveCustomCatalog() {
+      try {
+        localStorage.setItem('ac_perfumes_custom_catalog', JSON.stringify(perfumes));
+      } catch(e) {}
+    }
+
+    function exportUpdatedIndexHtml() {
+      showToast("Gerando index.html atualizado...");
+
+      // Prepare clean serialization of current perfumes array
+      const serializedCatalog = 'let perfumes = ' + JSON.stringify(perfumes, null, 2) + ';';
+
+      // Read document outerHTML
+      let html = document.documentElement.outerHTML;
+
+      // Ensure exported file starts in clean user mode (not admin mode)
+      html = html.replace(' class="admin-mode-active"', '').replace('admin-mode-active', '');
+
+      // Replace the inlined database with the new array
+      html = html.replace(/let perfumes = \[[\s\S]*?\n\s*\];/, serializedCatalog);
+
+      // Create downloadable blob
+      const fullDoc = '<!DOCTYPE html>\n<html lang="pt-BR">\n' + html + '\n</html>';
+      const blob = new Blob([fullDoc], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      alert("🎉 Sucesso!\n\nO arquivo 'index.html' atualizado com todos os produtos foi baixado para o seu computador!\n\nAgora basta arrastar esse 'index.html' para a página de upload do seu GitHub para publicar as novidades para todos os seus clientes.");
+    }
+
+    // Keyboard shortcut: Ctrl + Alt + A to toggle Admin login
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.altKey && (e.key === 'a' || e.key === 'A')) {
+        e.preventDefault();
+        if (document.body.classList.contains('admin-mode-active')) {
+          logoutAdmin();
+        } else {
+          openAdminLoginModal();
+        }
+      }
+    });
+
+    // Check saved catalog from localStorage
+    try {
+      const savedCatalog = localStorage.getItem('ac_perfumes_custom_catalog');
+      if (savedCatalog) {
+        const parsed = JSON.parse(savedCatalog);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          perfumes = parsed;
+        }
+      }
+    } catch(e) {}
+
+    checkAdminSession();
 
     updateCartBadges();
     renderProducts();
