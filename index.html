@@ -856,7 +856,7 @@
 
     .card-photo-wrapper {
       position: relative;
-      background: #ffffff;
+      background: radial-gradient(ellipse at 50% 68%, #fbf8f2 0%, #ffffff 75%);
       padding: 16px;
       height: 240px;
       display: flex;
@@ -869,23 +869,24 @@
 
     @media (max-width: 600px) {
       .card-photo-wrapper {
-        height: 185px;
+        height: 190px;
         padding: 10px;
       }
     }
 
     .card-photo {
-      max-width: 100%;
-      max-height: 100%;
+      max-width: 88%;
+      max-height: 88%;
       width: auto;
       height: auto;
       object-fit: contain;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.06));
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+      filter: drop-shadow(0 14px 20px rgba(28, 16, 10, 0.16)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
     }
 
     .product-card:hover .card-photo {
-      transform: scale(1.06);
+      transform: scale(1.08) translateY(-4px);
+      filter: drop-shadow(0 20px 28px rgba(28, 16, 10, 0.22)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
     }
 
     .card-badge {
@@ -907,6 +908,12 @@
 
     .badge-arabe {
       background: #fdf8ef;
+      border-color: #dfb974;
+      color: #8c6227;
+    }
+
+    .badge-bolsa {
+      background: #fdf5ea;
       border-color: #dfb974;
       color: #8c6227;
     }
@@ -2074,6 +2081,7 @@
       <nav class="nav-links" aria-label="Navegação Principal">
         <a href="#catalogo">Catálogo</a>
         <a href="#catalogo" onclick="setCategory('arabes')">Perfumes Árabes</a>
+        <a href="#catalogo" onclick="setCategory('bolsas')">Bolsas de Luxo</a>
         <a href="#como-pedir">Como Pedir</a>
         <a href="#avaliacoes">Avaliações</a>
         <a href="#duvidas">Dúvidas Frequentes</a>
@@ -2225,8 +2233,9 @@
         </div>
 
         <div class="filters-row">
-          <button class="filter-chip active" data-filter="all">Todos (41)</button>
-          <button class="filter-chip" data-filter="arabes">✨ Árabes de Dubai (18)</button>
+          <button class="filter-chip active" data-filter="all">Todos</button>
+          <button class="filter-chip" data-filter="arabes">✨ Árabes de Dubai</button>
+          <button class="filter-chip" data-filter="bolsas">👜 Bolsas de Luxo</button>
           <button class="filter-chip" data-filter="femininos">Femininos</button>
           <button class="filter-chip" data-filter="masculinos">Masculinos</button>
         </div>
@@ -2483,6 +2492,10 @@
       <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
       <span>Árabes</span>
     </button>
+    <button class="mobile-bar-btn" onclick="setCategory('bolsas')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6h-3V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-9-2h4v2h-4V4zm9 16H5V8h14v12z"/></svg>
+      <span>Bolsas</span>
+    </button>
     <button class="mobile-bar-btn cart-toggle-trigger">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
       <span class="mobile-cart-badge cart-badge-count">0</span>
@@ -2508,9 +2521,10 @@
         <h5>Categorias</h5>
         <ul>
           <li><a href="#catalogo" onclick="setCategory('arabes')">Perfumes Árabes de Dubai</a></li>
+          <li><a href="#catalogo" onclick="setCategory('bolsas')">Bolsas de Luxo</a></li>
           <li><a href="#catalogo" onclick="setCategory('femininos')">Perfumes Femininos</a></li>
           <li><a href="#catalogo" onclick="setCategory('masculinos')">Perfumes Masculinos</a></li>
-          <li><a href="#catalogo" onclick="setCategory('all')">Ver Todos os 41 Perfumes</a></li>
+          <li><a href="#catalogo" onclick="setCategory('all')">Ver Todos os Produtos</a></li>
         </ul>
       </div>
 
@@ -2582,7 +2596,15 @@
       { id: 38, name: "Azzaro Chrome 200 ml", brand: "Azzaro (Chrome)", volume: "Eau de Toilette 200ml", priceFormatted: "R$ 567,00", priceValue: 567.00, category: "masculinos", gender: "masculino", badgeText: "Importado 200ml", badgeClass: "badge-masculino", image: "azzaro-chrome-200ml.png", description: "A clássica assinatura fresca de Azzaro Chrome na imponente volumetria de 200ml. Perfeito para uso diário prolongado com elegância e vigor." },
       { id: 39, name: "Eternity Moment", brand: "Calvin Klein", volume: "Eau de Parfum", priceFormatted: "R$ 354,00", priceValue: 354.00, category: "femininos", gender: "feminino", badgeText: "Importado Feminino", badgeClass: "badge-feminino", image: "eternity-moment.webp", description: "Fragrância romântica e luminosa. Framboesa, lichia, melão, flor de romã, peônia rosa da China, jasmim, nenúfar aquático e sândalo delicado." },
       { id: 40, name: "Azzaro Pour Elle", brand: "Azzaro", volume: "Eau de Parfum", priceFormatted: "R$ 395,00", priceValue: 395.00, category: "femininos", gender: "feminino", badgeText: "Importado Feminino", badgeClass: "badge-feminino", image: "azzaro-pour-elle.jpg", description: "O reflexo feminino da sedução Azzaro. Cardamomo picante, champanhe efervescente, rosa de maio sedutora, lírio e madeira de caxemira envolvente." },
-      { id: 41, name: "Azzaro Chrome Azure", brand: "Azzaro", volume: "Eau de Toilette", priceFormatted: "R$ 415,00", priceValue: 415.00, category: "masculinos", gender: "masculino", badgeText: "Importado Frescor", badgeClass: "badge-masculino", image: "azzaro-chrome-azure.webp", description: "Lançamento de frescor aquático. O degradê azul do Mediterrâneo traduzido em bergamota italiana cintilante, lavanda francesa e brisa marinha refrescante." }
+      { id: 41, name: "Azzaro Chrome Azure", brand: "Azzaro", volume: "Eau de Toilette", priceFormatted: "R$ 415,00", priceValue: 415.00, category: "masculinos", gender: "masculino", badgeText: "Importado Frescor", badgeClass: "badge-masculino", image: "azzaro-chrome-azure.webp", description: "Lançamento de frescor aquático. O degradê azul do Mediterrâneo traduzido em bergamota italiana cintilante, lavanda francesa e brisa marinha refrescante." },
+
+      // --- BOLSAS DE LUXO (6) ---
+      { id: 101, name: "Bolsa Tote Monograma", brand: "AC Luxury Collection", volume: "Couro Sintético Nobre · Alça Dupla", priceFormatted: "R$ 380,00", priceValue: 380.00, category: "bolsas", gender: "feminino", badgeText: "Bolsa de Luxo", badgeClass: "badge-bolsa", image: "bolsa-tote.svg", description: "Bolsa Tote espaçosa com acabamento monograma luxuoso, ferragens douradas polidas, fechamento em zíper reforçado e amplo espaço interno com divisórias. Perfeita para o dia a dia e ocasiões elegantes." },
+      { id: 102, name: "Bolsa Transversal Elegance", brand: "AC Luxury Collection", volume: "Couro Ecológico Estruturado", priceFormatted: "R$ 320,00", priceValue: 320.00, category: "bolsas", gender: "feminino", badgeText: "Bolsa de Luxo", badgeClass: "badge-bolsa", image: "bolsa-transversal.svg", description: "Design minimalista e sofisticado. Acompanha alça transversal regulável, fecho magnético dourado com monograma e acabamento interno aveludado." },
+      { id: 103, name: "Bolsa Tiracolo Golden Chain", brand: "AC Luxury Collection", volume: "Matelassê Acolchoado · Corrente Ouro", priceFormatted: "R$ 290,00", priceValue: 290.00, category: "bolsas", gender: "feminino", badgeText: "Bolsa de Luxo", badgeClass: "badge-bolsa", image: "bolsa-tiracolo.svg", description: "O clássico do luxo atemporal em matelassê com costura acolchoada nobre e corrente dourada banhada. Combina elegância e praticidade para eventos e jantares." },
+      { id: 104, name: "Bolsa Clutch Festa Metalizada", brand: "AC Luxury Collection", volume: "Estruturada em Metal Ouro Champanhe", priceFormatted: "R$ 250,00", priceValue: 250.00, category: "bolsas", gender: "feminino", badgeText: "Bolsa de Luxo", badgeClass: "badge-bolsa", image: "bolsa-clutch.svg", description: "Clutch sofisticada para casamentos, formaturas e noites glamourosas. Textura metalizada em ouro champanhe com fecho cravejado e alça longa opcional." },
+      { id: 105, name: "Bolsa Baú Clássica Premium", brand: "AC Luxury Collection", volume: "Silhueta Baú Rígido · Pés Dourados", priceFormatted: "R$ 390,00", priceValue: 390.00, category: "bolsas", gender: "feminino", badgeText: "Bolsa de Luxo", badgeClass: "badge-bolsa", image: "bolsa-bau.svg", description: "Silhueta icônica e imponente na cor borgonha nobre. Estrutura rígida de altíssima durabilidade com pés de apoio dourados na base, alça de mão almofadada e alça longa transversal." },
+      { id: 106, name: "Bolsa Shoulder Bag Croco Chic", brand: "AC Luxury Collection", volume: "Couro Textura Croco Off-White", priceFormatted: "R$ 310,00", priceValue: 310.00, category: "bolsas", gender: "feminino", badgeText: "Bolsa de Luxo", badgeClass: "badge-bolsa", image: "bolsa-shoulder.svg", description: "Tendência máxima de estilo com textura croco envernizada e fecho rotativo em ouro nobre. Ideal para usar no ombro com elegância e atitude." }
     ];
 
     let currentCategory = 'all';
@@ -2636,8 +2658,12 @@
       return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    function createWhatsAppDirectLink(name, price) {
-      const msg = `Olá, AC Perfumes! Tenho interesse no perfume ${name}, no valor de ${price}. Gostaria de confirmar a disponibilidade e o frete.`;
+    function createWhatsAppDirectLink(name, price, category = '') {
+      const isBag = (category === 'bolsas');
+      const intro = isBag
+        ? `Olá, AC Perfumes! Tenho interesse na bolsa *${name}*, no valor de ${price}.`
+        : `Olá, AC Perfumes! Tenho interesse no perfume *${name}*, no valor de ${price}.`;
+      const msg = `${intro} Gostaria de confirmar a disponibilidade e o frete.`;
       return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
     }
 
@@ -2668,8 +2694,9 @@
       let filtered = perfumes.filter(p => {
         let matchesCat = true;
         if (currentCategory === 'arabes') matchesCat = (p.category === 'arabes');
-        else if (currentCategory === 'femininos') matchesCat = (p.gender === 'feminino' || p.category === 'femininos' || p.gender === 'unissex');
-        else if (currentCategory === 'masculinos') matchesCat = (p.gender === 'masculino' || p.category === 'masculinos' || p.gender === 'unissex');
+        else if (currentCategory === 'bolsas') matchesCat = (p.category === 'bolsas');
+        else if (currentCategory === 'femininos') matchesCat = (p.category !== 'bolsas' && (p.gender === 'feminino' || p.category === 'femininos' || p.gender === 'unissex'));
+        else if (currentCategory === 'masculinos') matchesCat = (p.category !== 'bolsas' && (p.gender === 'masculino' || p.category === 'masculinos' || p.gender === 'unissex'));
 
         const matchesSrch = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
         return matchesCat && matchesSrch;
@@ -2679,7 +2706,7 @@
       else if (sortMode === 'price-desc') filtered.sort((a, b) => b.priceValue - a.priceValue);
       else if (sortMode === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
 
-      countDisplay.textContent = `Exibindo ${filtered.length} perfume${filtered.length === 1 ? '' : 's'}`;
+      countDisplay.textContent = `Exibindo ${filtered.length} produto${filtered.length === 1 ? '' : 's'}`;
 
       if (filtered.length === 0) {
         grid.innerHTML = '';
@@ -2690,7 +2717,7 @@
       emptyState.style.display = 'none';
 
       grid.innerHTML = filtered.map(p => {
-        const waLink = createWhatsAppDirectLink(p.name, p.priceFormatted);
+        const waLink = createWhatsAppDirectLink(p.name, p.priceFormatted, p.category);
         const installmentVal = (p.priceValue / 10).toFixed(2).replace('.', ',');
         return `
           <article class="product-card" data-id="${p.id}">
@@ -2700,7 +2727,7 @@
                    src="${p.image}" 
                    alt="${p.name}" 
                    loading="lazy"
-                   onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='public/images/perfumes/' + this.src.split('/').pop();}">
+                   onerror="if(!this.dataset.fb){this.dataset.fb='1';const fn=this.src.split('/').pop();this.src=fn.startsWith('bolsa')?'public/images/bolsas/'+fn:'public/images/perfumes/'+fn;}">
               <button class="card-details-btn" title="Ver detalhes" onclick="event.stopPropagation(); openModal(${p.id});">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -2782,7 +2809,7 @@
         total += p.priceValue * item.qty;
         return `
           <div class="cart-item">
-            <img class="cart-item-img" src="${p.image}" alt="${p.name}" onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='public/images/perfumes/' + this.src.split('/').pop();}">
+            <img class="cart-item-img" src="${p.image}" alt="${p.name}" onerror="if(!this.dataset.fb){this.dataset.fb='1';const fn=this.src.split('/').pop();this.src=fn.startsWith('bolsa')?'public/images/bolsas/'+fn:'public/images/perfumes/'+fn;}">
             <div class="cart-item-details">
               <h5 class="cart-item-title">${p.name}</h5>
               <div class="cart-item-price">${formatBRL(p.priceValue)}</div>
@@ -2805,7 +2832,7 @@
       });
 
       const message = `✨ *NOVO PEDIDO - AC PERFUMES* ✨\n\n` +
-        `Olá! Gostaria de consultar a disponibilidade dos seguintes perfumes:\n\n` +
+        `Olá! Gostaria de consultar a disponibilidade dos seguintes produtos:\n\n` +
         lines.join('\n') +
         `\n\n💳 *Valor Total:* ${formatBRL(total)}\n` +
         `Podemos combinar o envio e forma de pagamento?`;
@@ -2840,7 +2867,8 @@
       modalImg.onerror = function() {
         if (!this.dataset.fb) {
           this.dataset.fb = '1';
-          this.src = 'public/images/perfumes/' + this.src.split('/').pop();
+          const fn = this.src.split('/').pop();
+          this.src = fn.startsWith('bolsa') ? 'public/images/bolsas/' + fn : 'public/images/perfumes/' + fn;
         }
       };
       modalBadge.textContent = p.badgeText;
@@ -2851,7 +2879,7 @@
       modalPrice.textContent = p.priceFormatted;
       const inst = (p.priceValue / 10).toFixed(2).replace('.', ',');
       modalInstallment.textContent = `ou em até 10x de R$ ${inst} no cartão`;
-      modalWhatsAppBtn.href = createWhatsAppDirectLink(p.name, p.priceFormatted);
+      modalWhatsAppBtn.href = createWhatsAppDirectLink(p.name, p.priceFormatted, p.category);
       modalOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
     }

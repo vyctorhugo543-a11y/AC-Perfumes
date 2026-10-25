@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="nudeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dfcaa7"/>
+      <stop offset="50%" stop-color="#cbb18a"/>
+      <stop offset="100%" stop-color="#9a815e"/>
+    </linearGradient>
+    <linearGradient id="goldAcc2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8e7"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8a6222"/>
+    </linearGradient>
+    <filter id="bagShd2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="#faf7f2" rx="16"/>
+  <g filter="url(#bagShd2)" transform="translate(200, 230)">
+    <!-- Long Crossbody Strap -->
+    <path d="M -90,-20 C -90,-160 90,-160 90,-20" fill="none" stroke="#9a815e" stroke-width="6"/>
+    <!-- Bag Body -->
+    <rect x="-105" y="-20" width="210" height="135" rx="20" fill="url(#nudeGrad)" stroke="#8e734f" stroke-width="1.5"/>
+    <!-- Flap Cover -->
+    <path d="M -105,-20 L 105,-20 L 105,45 C 105,75 50,85 0,85 C -50,85 -105,75 -105,45 Z" fill="#cbb18a" stroke="#8e734f" stroke-width="1.5"/>
+    <!-- Gold Clasp -->
+    <rect x="-24" y="65" width="48" height="28" rx="6" fill="url(#goldAcc2)"/>
+    <rect x="-16" y="73" width="32" height="12" rx="3" fill="#3c261c"/>
+    <text x="0" y="82" font-family="'Playfair Display', serif" font-size="9" font-weight="700" fill="url(#goldAcc2)" text-anchor="middle">AC</text>
+  </g>
+</svg>

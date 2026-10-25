@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="burgundyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4d1a24"/>
+      <stop offset="50%" stop-color="#340e16"/>
+      <stop offset="100%" stop-color="#1f060b"/>
+    </linearGradient>
+    <linearGradient id="goldAcc5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8e7"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8a6222"/>
+    </linearGradient>
+    <filter id="bagShd5" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="400" height="400" fill="#faf7f2" rx="16"/>
+  <g filter="url(#bagShd5)" transform="translate(200, 225)">
+    <!-- Round Handles -->
+    <path d="M -42,-15 C -42,-115 42,-115 42,-15" fill="none" stroke="url(#burgundyGrad)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M -42,-15 C -42,-115 42,-115 42,-15" fill="none" stroke="#6b2735" stroke-width="2"/>
+    <!-- Trunk / Bau Body with arched top -->
+    <path d="M -95,120 L 95,120 C 105,120 110,110 108,100 L 92,20 C 88,0 70,-15 50,-15 L -50,-15 C -70,-15 -88,0 -92,20 L -108,100 C -110,110 -105,120 -95,120 Z" fill="url(#burgundyGrad)" stroke="#6b2735" stroke-width="1.8"/>
+    <!-- Top Zipper Line -->
+    <path d="M -50,-15 L 50,-15" stroke="url(#goldAcc5)" stroke-width="3"/>
+    <!-- Reinforcement leather bands with gold studs -->
+    <rect x="-48" y="-12" width="12" height="132" fill="#290a10" opacity="0.6"/>
+    <rect x="36" y="-12" width="12" height="132" fill="#290a10" opacity="0.6"/>
+    <!-- Gold Studs -->
+    <circle cx="-42" cy="-10" r="3" fill="url(#goldAcc5)"/>
+    <circle cx="-42" cy="115" r="3" fill="url(#goldAcc5)"/>
+    <circle cx="42" cy="-10" r="3" fill="url(#goldAcc5)"/>
+    <circle cx="42" cy="115" r="3" fill="url(#goldAcc5)"/>
+    <!-- Padlock Charm -->
+    <rect x="-9" y="38" width="18" height="22" rx="4" fill="url(#goldAcc5)"/>
+    <path d="M -5,38 C -5,28 5,28 5,38" fill="none" stroke="url(#goldAcc5)" stroke-width="2"/>
+  </g>
+</svg>
