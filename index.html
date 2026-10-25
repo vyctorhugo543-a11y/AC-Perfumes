@@ -13,44 +13,2064 @@
   <meta name="description" content="AC Perfumes - Seleção exclusiva de 41 perfumes importados e fragrâncias árabes nobres 100% originais e lacrados. Atendimento consultivo e pedidos pelo WhatsApp.">
   <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
 
-  <!-- GitHub Pages Subpath Protection -->
-  <script>
-    (function() {
-      if (location.hostname.endsWith('github.io') && !location.pathname.endsWith('/') && !location.pathname.endsWith('.html')) {
-        location.replace(location.pathname + '/' + location.search + location.hash);
-      }
-    })();
-  </script>
-
   <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Master Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ==========================================================================
+       AC PERFUMES - ALTA PERFUMARIA DE LUXO
+       Design System & Master Stylesheet (Inlined for 100% GitHub Pages Compatibility)
+       ========================================================================== */
+
+    :root {
+      --primary-dark: #1f140e;
+      --secondary-dark: #2c1a11;
+      --accent-espresso: #150c07;
+      --gold-dark: #8c6227;
+      --gold-main: #b88d40;
+      --gold-light: #dfb974;
+      --gold-soft: #fbf5ea;
+      --gold-gradient: linear-gradient(135deg, #f7e7c4 0%, #d8b26e 50%, #9a712c 100%);
+      --gold-gradient-hover: linear-gradient(135deg, #fff1d4 0%, #e2be7e 50%, #ad823b 100%);
+      --bg-cream: #faf7f2;
+      --bg-subtle: #f3ece2;
+      --bg-card: #ffffff;
+      --text-main: #221813;
+      --text-muted: #726256;
+      --text-light: #fbf6f0;
+      --border-color: #ebdcd0;
+      --border-hover: #cfb297;
+      
+      --whatsapp-green: #25d366;
+      --whatsapp-dark: #128c7e;
+      --whatsapp-gradient: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      --whatsapp-hover: linear-gradient(135deg, #2ae06f 0%, #179e8e 100%);
+
+      --shadow-sm: 0 2px 10px rgba(31, 20, 14, 0.05);
+      --shadow-md: 0 8px 26px rgba(31, 20, 14, 0.08);
+      --shadow-lg: 0 16px 42px rgba(31, 20, 14, 0.14);
+      --shadow-gold: 0 8px 24px rgba(184, 141, 64, 0.28);
+      --radius-xs: 6px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-top: env(safe-area-inset-top, 0px);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: calc(75px + var(--safe-bottom));
+      overflow-x: hidden;
+    }
+
+    @media (min-width: 901px) {
+      body {
+        padding-bottom: 0;
+      }
+    }
+
+    a, button {
+      color: inherit;
+      text-decoration: none;
+      touch-action: manipulation;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      outline: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Topbar */
+    .topbar {
+      background: linear-gradient(90deg, #140b07, #2c1a11, #140b07);
+      color: #f7ede2;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      text-align: center;
+      border-bottom: 1px solid rgba(184, 141, 64, 0.35);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      padding-top: calc(8px + var(--safe-top));
+      position: relative;
+      z-index: 101;
+    }
+
+    .topbar-highlight {
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .topbar-dot {
+      opacity: 0.5;
+    }
+
+    @media (max-width: 680px) {
+      .topbar {
+        font-size: 10px;
+        padding: 7px 12px calc(7px + var(--safe-top));
+        letter-spacing: 0.06em;
+      }
+      .topbar-hide-mobile {
+        display: none;
+      }
+    }
+
+    /* Header */
+    header {
+      background: rgba(250, 247, 242, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: var(--transition);
+    }
+
+    .header-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo-svg {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px rgba(184, 141, 64, 0.32);
+      border: 1px solid rgba(223, 185, 116, 0.4);
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .brand-link:hover .brand-logo-svg {
+      transform: scale(1.06);
+      box-shadow: 0 6px 20px rgba(184, 141, 64, 0.45);
+    }
+
+    .brand-text h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(20px, 2.8vw, 26px);
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      color: var(--primary-dark);
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--secondary-dark);
+      letter-spacing: 0.03em;
+      transition: var(--transition);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--gold-main);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-dark);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cart-toggle-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 9px 16px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .cart-toggle-btn:hover {
+      border-color: var(--gold-main);
+      background: var(--gold-soft);
+      transform: translateY(-1px);
+    }
+
+    .cart-badge-count {
+      background: var(--primary-dark);
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(223, 185, 116, 0.4);
+    }
+
+    .header-whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--whatsapp-gradient);
+      color: #ffffff;
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(18, 140, 126, 0.26);
+      white-space: nowrap;
+    }
+
+    .header-whatsapp-btn:hover {
+      background: var(--whatsapp-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(18, 140, 126, 0.36);
+    }
+
+    @media (max-width: 600px) {
+      .header-whatsapp-btn span {
+        display: none;
+      }
+      .header-whatsapp-btn {
+        padding: 9px;
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        justify-content: center;
+      }
+      .cart-toggle-btn span.cart-btn-label {
+        display: none;
+      }
+      .cart-toggle-btn {
+        padding: 8px 12px;
+      }
+      .header-inner {
+        padding: 10px 14px;
+      }
+      .brand-logo-svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      background: radial-gradient(ellipse at 50% 20%, #3e261a 0%, #20130d 60%, #120a06 100%);
+      color: #f7ede2;
+      padding: 64px 20px 72px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(184, 141, 64, 0.35);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -25%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 820px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(223, 185, 116, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-crest-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(184, 141, 64, 0.12);
+      border: 1px solid rgba(223, 185, 116, 0.4);
+      color: var(--gold-light);
+      padding: 7px 20px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 4.6vw, 54px);
+      font-weight: 600;
+      line-height: 1.2;
+      max-width: 880px;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-wrap: balance;
+    }
+
+    .hero-title .hero-line {
+      display: block;
+    }
+
+    .hero-title .hero-gold {
+      font-style: italic;
+      background: linear-gradient(135deg, #fff2db 0%, #dfb974 50%, #af843e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+
+    .hero-desc {
+      font-size: clamp(14px, 1.8vw, 16.5px);
+      color: #e5d4c5;
+      max-width: 720px;
+      line-height: 1.7;
+      margin-bottom: 34px;
+      font-weight: 300;
+      padding: 0 10px;
+    }
+
+    .hero-desc strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 38px;
+      width: 100%;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--gold-gradient);
+      color: #1a0f08;
+      padding: 14px 30px;
+      border-radius: var(--radius-full);
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: var(--transition);
+      box-shadow: 0 6px 22px rgba(184, 141, 64, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-hero-primary:hover {
+      background: var(--gold-gradient-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 9px 28px rgba(184, 141, 64, 0.52);
+      color: #120904;
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #f7ede2;
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(223, 185, 116, 0.45);
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--gold-light);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .hero-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #f1e1d2;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(223, 185, 116, 0.25);
+    }
+
+    .hero-pill svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--gold-light);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 40px 16px 48px;
+      }
+      .hero-ctas {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .btn-hero-primary, .btn-hero-secondary {
+        width: 100%;
+        padding: 13px 20px;
+        font-size: 13px;
+      }
+      .hero-highlights {
+        gap: 8px;
+      }
+      .hero-pill {
+        font-size: 10.5px;
+        padding: 6px 12px;
+      }
+    }
+
+    /* Trust Bar */
+    .trust-bar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 24px 20px;
+    }
+
+    .trust-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px;
+    }
+
+    .trust-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: var(--gold-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(184, 141, 64, 0.3);
+    }
+
+    .trust-icon-box svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .trust-text h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 2px;
+    }
+
+    .trust-text p {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    @media (max-width: 900px) {
+      .trust-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .trust-container {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .trust-bar {
+        padding: 16px;
+      }
+    }
+
+    /* Catalog */
+    main {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 24px 12px 60px;
+      }
+    }
+
+    .catalog-header {
+      margin-bottom: 28px;
+    }
+
+    .catalog-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .catalog-top-row h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(24px, 3.2vw, 34px);
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .catalog-top-row p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .catalog-meta-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .catalog-counter {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .controls-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .controls-row-primary {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .controls-row-primary {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 40px 12px 44px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      background: #ffffff;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--text-main);
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--gold-main);
+      box-shadow: 0 0 0 3px rgba(184, 141, 64, 0.18);
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--text-muted);
+      display: none;
+      font-size: 19px;
+      padding: 6px;
+      line-height: 1;
+    }
+
+    .sort-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .sort-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .sort-select {
+      padding: 11px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--secondary-dark);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      outline: none;
+      width: 100%;
+      max-width: 220px;
+    }
+
+    .filters-row {
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .filters-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-chip {
+      padding: 9px 18px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      color: var(--secondary-dark);
+      font-size: 12.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-chip:hover {
+      border-color: var(--gold-light);
+      color: var(--gold-dark);
+    }
+
+    .filter-chip.active {
+      background: var(--primary-dark);
+      color: #ffffff;
+      border-color: var(--primary-dark);
+      box-shadow: 0 4px 14px rgba(31, 20, 14, 0.25);
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    @media (max-width: 1120px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-hover);
+    }
+
+    .card-photo-wrapper {
+      position: relative;
+      background: #ffffff;
+      padding: 16px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #f3ece4;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .card-photo-wrapper {
+        height: 185px;
+        padding: 10px;
+      }
+    }
+
+    .card-photo {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.06));
+    }
+
+    .product-card:hover .card-photo {
+      transform: scale(1.06);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(184, 141, 64, 0.35);
+      color: var(--primary-dark);
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      z-index: 2;
+    }
+
+    .badge-arabe {
+      background: #fdf8ef;
+      border-color: #dfb974;
+      color: #8c6227;
+    }
+
+    .badge-feminino {
+      background: #fdf3f4;
+      border-color: #e8b2b7;
+      color: #9c3b48;
+    }
+
+    .badge-masculino {
+      background: #f0f4f8;
+      border-color: #b3c5d6;
+      color: #2a527a;
+    }
+
+    .card-details-btn {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary-dark);
+      cursor: pointer;
+      transition: var(--transition);
+      opacity: 0.88;
+    }
+
+    .card-content {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .card-content {
+        padding: 10px;
+        gap: 8px;
+      }
+    }
+
+    .card-meta {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--gold-dark);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(14px, 1.4vw, 16px);
+      font-weight: 600;
+      color: var(--primary-dark);
+      line-height: 1.25;
+      margin-top: 2px;
+      min-height: 38px;
+      cursor: pointer;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: color 0.2s;
+    }
+
+    .card-title:hover {
+      color: var(--gold-dark);
+    }
+
+    .card-price-row {
+      margin-top: 2px;
+    }
+
+    .card-price-label {
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .card-price {
+      font-size: clamp(18px, 1.9vw, 22px);
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.01em;
+      font-family: 'Playfair Display', Georgia, serif;
+      line-height: 1.2;
+    }
+
+    .card-installment {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .card-actions-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .btn-card-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      background: var(--whatsapp-gradient);
+      color: #ffffff;
+      padding: 10px 8px;
+      border-radius: var(--radius-xs);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-align: center;
+      transition: var(--transition);
+      box-shadow: 0 3px 10px rgba(18, 140, 126, 0.2);
+      width: 100%;
+    }
+
+    .btn-card-whatsapp:hover {
+      background: var(--whatsapp-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-card-whatsapp svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .btn-card-add-cart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      color: var(--secondary-dark);
+      padding: 8px;
+      border-radius: var(--radius-xs);
+      font-size: 11px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-card-add-cart:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold-main);
+      color: var(--gold-dark);
+    }
+
+    .btn-card-add-cart svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .btn-card-whatsapp {
+        padding: 9px 6px;
+        font-size: 10.5px;
+      }
+      .btn-card-add-cart {
+        padding: 7px 5px;
+        font-size: 10px;
+      }
+    }
+
+    /* Empty State */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      background: #fff;
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border-color);
+      grid-column: 1 / -1;
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      color: var(--gold-main);
+      margin-bottom: 14px;
+      opacity: 0.7;
+    }
+
+    .empty-state h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .empty-state p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .empty-state button {
+      background: var(--primary-dark);
+      color: #fff;
+      padding: 11px 24px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Cart Drawer */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 11, 7, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cart-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      box-shadow: -10px 0 35px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cart-drawer.active {
+      transform: translateX(0);
+    }
+
+    .cart-drawer-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-cream);
+    }
+
+    .cart-drawer-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-drawer-title h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      color: var(--primary-dark);
+    }
+
+    .cart-close-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--secondary-dark);
+      transition: var(--transition);
+    }
+
+    .cart-close-btn:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+
+    .cart-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+    }
+
+    .cart-empty-message {
+      text-align: center;
+      padding: 50px 20px;
+      color: var(--text-muted);
+    }
+
+    .cart-empty-message svg {
+      width: 44px;
+      height: 44px;
+      color: var(--gold-main);
+      margin-bottom: 12px;
+      opacity: 0.6;
+    }
+
+    .cart-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px;
+      background: var(--bg-cream);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      align-items: center;
+    }
+
+    .cart-item-img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: var(--radius-xs);
+      padding: 4px;
+      border: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+
+    .cart-item-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-item-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cart-item-price {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--gold-dark);
+      margin: 2px 0 6px;
+    }
+
+    .cart-item-qty-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .qty-btn:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold-main);
+    }
+
+    .qty-val {
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 18px;
+      text-align: center;
+    }
+
+    .cart-item-remove {
+      color: #a34848;
+      cursor: pointer;
+      padding: 4px;
+      font-size: 15px;
+      transition: var(--transition);
+      margin-left: auto;
+    }
+
+    .cart-drawer-footer {
+      padding: 18px 20px calc(18px + var(--safe-bottom));
+      border-top: 1px solid var(--border-color);
+      background: #ffffff;
+    }
+
+    .cart-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .cart-total-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .cart-total-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .btn-checkout-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: var(--whatsapp-gradient);
+      color: #ffffff;
+      padding: 13px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      width: 100%;
+      box-shadow: 0 4px 14px rgba(18, 140, 126, 0.3);
+      transition: var(--transition);
+    }
+
+    .btn-checkout-whatsapp:hover {
+      background: var(--whatsapp-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 11, 7, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      border: 1px solid var(--border-color);
+      transform: scale(0.96);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+
+    @media (max-width: 640px) {
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+      }
+      .modal-card {
+        grid-template-columns: 1fr;
+        max-height: 85vh;
+        border-radius: 24px 24px 0 0;
+        border-bottom: none;
+        transform: translateY(100%);
+        padding-bottom: calc(16px + var(--safe-bottom));
+      }
+      .modal-overlay.active .modal-card {
+        transform: translateY(0);
+      }
+      .modal-drag-bar {
+        display: block;
+        width: 44px;
+        height: 5px;
+        background: #dfd3c5;
+        border-radius: var(--radius-full);
+        margin: 10px auto 0;
+      }
+    }
+
+    .modal-drag-bar {
+      display: none;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      background: rgba(250, 247, 242, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--primary-dark);
+      z-index: 10;
+      font-size: 22px;
+      transition: var(--transition);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .modal-image-col {
+      background: #ffffff;
+      padding: 28px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 640px) {
+      .modal-image-col {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 16px;
+        max-height: 240px;
+      }
+    }
+
+    .modal-image-col img {
+      max-width: 100%;
+      max-height: 320px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.08));
+    }
+
+    .modal-info-col {
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .modal-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(22px, 3vw, 26px);
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .modal-brand {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .modal-desc {
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      background: #faf7f2;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--gold-main);
+    }
+
+    .modal-price-box {
+      margin-bottom: 16px;
+    }
+
+    .modal-price-box .price-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .modal-price-box .price-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .modal-installment {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .btn-modal-add-bag {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--bg-cream);
+      border: 1px solid var(--border-color);
+      color: var(--primary-dark);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-modal-add-bag:hover {
+      background: var(--gold-soft);
+      border-color: var(--gold-main);
+      color: var(--gold-dark);
+    }
+
+    /* How to order */
+    .how-it-works {
+      background: #ffffff;
+      padding: 60px 20px;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 40px;
+    }
+
+    .section-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(24px, 3.2vw, 36px);
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .step-card {
+      background: var(--bg-cream);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      text-align: center;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .step-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-light);
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary-dark);
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      border: 1px solid rgba(223, 185, 116, 0.4);
+    }
+
+    .step-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .step-card p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .how-it-works {
+        padding: 40px 16px;
+      }
+    }
+
+    /* Reviews */
+    .reviews-section {
+      padding: 60px 20px;
+      background: var(--bg-cream);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .review-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .review-stars {
+      color: #d4af37;
+      font-size: 15px;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      font-size: 13.5px;
+      color: var(--text-main);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid #f3ece4;
+      padding-top: 14px;
+    }
+
+    .review-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: var(--gold-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      border: 1px solid rgba(184, 141, 64, 0.3);
+    }
+
+    .review-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .review-tag {
+      font-size: 11px;
+      color: var(--gold-dark);
+    }
+
+    @media (max-width: 860px) {
+      .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* FAQ */
+    .faq-section {
+      background: #ffffff;
+      padding: 60px 20px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .faq-list {
+      max-width: 780px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 16px 20px;
+      text-align: left;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary-dark);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .faq-question:hover {
+      background: var(--bg-cream);
+    }
+
+    .faq-icon {
+      font-size: 18px;
+      color: var(--gold-dark);
+      transition: transform 0.25s;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 16px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      background: #ffffff;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    /* Toast */
+    .toast-notice {
+      position: fixed;
+      bottom: 84px;
+      left: 50%;
+      transform: translateX(-50%) translateY(40px);
+      background: var(--primary-dark);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(223, 185, 116, 0.4);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .toast-notice.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      background: #140b07;
+      color: #e5d7c9;
+      padding: 56px 20px 30px;
+      border-top: 1px solid rgba(184, 141, 64, 0.25);
+    }
+
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    .footer-brand-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: #b39f8f;
+      max-width: 440px;
+    }
+
+    .footer-col h5 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: #c9b9a9;
+    }
+
+    .footer-col a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: #8c7868;
+    }
+
+    /* Mobile Bottom Bar */
+    .mobile-bottom-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26, 16, 11, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(184, 141, 64, 0.35);
+      padding: 8px 12px calc(8px + var(--safe-bottom));
+      z-index: 95;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0 -4px 18px rgba(0,0,0,0.22);
+    }
+
+    @media (max-width: 900px) {
+      .mobile-bottom-bar {
+        display: flex;
+      }
+    }
+
+    .mobile-bar-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      color: #d8c8b8;
+      font-size: 10px;
+      font-weight: 600;
+      flex: 1;
+      padding: 4px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .mobile-bar-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .mobile-cart-badge {
+      position: absolute;
+      top: 0;
+      right: calc(50% - 16px);
+      background: var(--gold-main);
+      color: #1a0f08;
+      font-size: 10px;
+      font-weight: 800;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1px;
+    }
+
+    .mobile-bar-whatsapp {
+      color: #25d366;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Announcement Bar -->
+  <!-- Top Announcement Bar -->
   <div class="topbar">
     <span>✨ <span class="topbar-highlight">AC PERFUMES</span> · Perfumes Árabes &amp; Importados Originais</span>
     <span class="topbar-dot topbar-hide-mobile">•</span>
     <span class="topbar-hide-mobile">Atendimento WhatsApp: <strong>(16) 99190-7811</strong></span>
   </div>
 
-  <!-- Header -->
+  <!-- Header with Inlined Vector SVG Logo (Zero 404 Guaranteed) -->
   <header>
     <div class="header-inner">
       <a href="#" class="brand-link" aria-label="Página inicial AC Perfumes">
-        <img class="brand-logo-img" src="public/images/logo-ac.svg" alt="Logo AC Perfumes">
+        <!-- SVG Monogram Logo Built-in -->
+        <svg class="brand-logo-svg" viewBox="0 0 400 400" width="48" height="48">
+          <defs>
+            <linearGradient id="goldHdr" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff8e7"/>
+              <stop offset="20%" stop-color="#f0d28d"/>
+              <stop offset="50%" stop-color="#c99d49"/>
+              <stop offset="80%" stop-color="#fae3b2"/>
+              <stop offset="100%" stop-color="#734d12"/>
+            </linearGradient>
+            <radialGradient id="darkBgHdr" cx="50%" cy="32%" r="72%">
+              <stop offset="0%" stop-color="#2c1a11"/>
+              <stop offset="60%" stop-color="#180e09"/>
+              <stop offset="100%" stop-color="#0a0503"/>
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="200" r="192" fill="url(#darkBgHdr)"/>
+          <circle cx="200" cy="200" r="185" fill="none" stroke="url(#goldHdr)" stroke-width="2.6"/>
+          <circle cx="200" cy="200" r="176" fill="none" stroke="url(#goldHdr)" stroke-width="1.2" stroke-dasharray="3.2 4" opacity="0.85"/>
+          <path d="M 200,16 L 204,26 L 214,30 L 204,34 L 200,44 L 196,34 L 186,30 L 196,26 Z" fill="url(#goldHdr)"/>
+          <path d="M 200,356 L 204,366 L 214,370 L 204,374 L 200,384 L 196,374 L 186,370 L 196,366 Z" fill="url(#goldHdr)"/>
+          <path d="M 30,200 L 34,196 L 44,192 L 34,188 L 30,178 L 26,188 L 16,192 L 26,196 Z" fill="url(#goldHdr)"/>
+          <path d="M 370,200 L 374,196 L 384,192 L 374,188 L 370,178 L 366,188 L 356,192 L 366,196 Z" fill="url(#goldHdr)"/>
+          <g transform="translate(200, 68)">
+            <path d="M 0,-18 L 3.5,-7 L 14,-4 L 3.5,-1 L 0,10 L -3.5,-1 L -14,-4 L -3.5,-7 Z" fill="url(#goldHdr)"/>
+            <circle cx="-25" cy="-4" r="2.8" fill="url(#goldHdr)"/>
+            <circle cx="25" cy="-4" r="2.8" fill="url(#goldHdr)"/>
+          </g>
+          <g>
+            <path d="M 152,106 L 108,266 L 88,266 C 82,266 78,268 78,274 L 78,278 L 126,278 L 126,274 C 126,268 122,266 116,266 L 112,266 L 150,118 Z" fill="url(#goldHdr)"/>
+            <path d="M 124,220 L 194,220 L 191,228 L 121,228 Z" fill="url(#goldHdr)"/>
+            <path d="M 238,124 C 214,124 186,134 168,154 L 176,164 C 190,148 212,140 234,140 C 274,140 300,166 300,202 C 300,240 270,266 230,266 C 206,266 186,256 172,238 L 164,248 C 182,268 206,280 234,280 C 284,280 320,246 320,202 C 320,154 282,124 238,124 Z" fill="url(#goldHdr)"/>
+            <circle cx="236" cy="132" r="5.5" fill="url(#goldHdr)"/>
+            <circle cx="232" cy="273" r="5.5" fill="url(#goldHdr)"/>
+            <path d="M 148,96 C 152,96 156,98 158,102 L 218,266 L 224,266 C 230,266 234,268 234,274 L 234,278 L 180,278 L 180,274 C 180,268 184,266 190,266 L 198,266 L 155,148 L 142,96 Z" fill="url(#goldHdr)"/>
+            <path d="M 152,86 L 155,93 L 162,96 L 155,99 L 152,106 L 149,99 L 142,96 L 149,93 Z" fill="#ffffff"/>
+          </g>
+          <g transform="translate(200, 318)">
+            <line x1="-50" y1="0" x2="-9" y2="0" stroke="url(#goldHdr)" stroke-width="1.4"/>
+            <circle cx="0" cy="0" r="3.2" fill="url(#goldHdr)"/>
+            <line x1="9" y1="0" x2="50" y2="0" stroke="url(#goldHdr)" stroke-width="1.4"/>
+          </g>
+        </svg>
+
         <div class="brand-text">
           <h1>AC Perfumes</h1>
           <span>Alta Perfumaria</span>
         </div>
       </a>
 
-      <!-- Desktop Navigation -->
+      <!-- Desktop Nav -->
       <nav class="nav-links" aria-label="Navegação Principal">
         <a href="#catalogo">Catálogo</a>
         <a href="#catalogo" onclick="setCategory('arabes')">Perfumes Árabes</a>
@@ -59,9 +2079,8 @@
         <a href="#duvidas">Dúvidas Frequentes</a>
       </nav>
 
-      <!-- Header Actions -->
+      <!-- Actions -->
       <div class="header-actions">
-        <!-- Shopping Bag Trigger -->
         <button class="cart-toggle-btn cart-toggle-trigger" aria-label="Abrir sacola de compras">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/>
@@ -70,7 +2089,6 @@
           <span class="cart-badge-count">0</span>
         </button>
 
-        <!-- Direct WhatsApp Action -->
         <a class="header-whatsapp-btn" href="https://wa.me/5516991907811?text=Ol%C3%A1%2C%20AC%20Perfumes%21%20Gostaria%20de%20consultar%20a%20disponibilidade%20de%20fragr%C3%A2ncias." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.584 1.802.946 2.796.946 3.181 0 5.767-2.586 5.768-5.766.001-3.18-2.585-5.767-5.768-5.767zm7.576 5.767c-.002 4.183-3.402 7.581-7.585 7.581-1.332 0-2.435-.386-3.493-.974l-4.529 1.188 1.21-4.417c-.664-1.121-1.077-2.298-1.076-3.378.002-4.183 3.402-7.581 7.585-7.581 4.183 0 7.588 3.398 7.588 7.581z"/>
@@ -186,7 +2204,6 @@
       <!-- Controls -->
       <div class="controls-bar">
         <div class="controls-row-primary">
-          <!-- Search Box -->
           <div class="search-box">
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"></circle>
@@ -196,7 +2213,6 @@
             <span id="search-clear" class="search-clear">&times;</span>
           </div>
 
-          <!-- Sort Select -->
           <div class="sort-box">
             <label for="sort-select" class="sort-label">Ordenar por:</label>
             <select id="sort-select" class="sort-select" aria-label="Ordenar perfumes">
@@ -208,7 +2224,6 @@
           </div>
         </div>
 
-        <!-- Filter Chips -->
         <div class="filters-row">
           <button class="filter-chip active" data-filter="all">Todos (41)</button>
           <button class="filter-chip" data-filter="arabes">✨ Árabes de Dubai (18)</button>
@@ -219,9 +2234,7 @@
     </div>
 
     <!-- Product Grid -->
-    <div id="product-grid" class="product-grid">
-      <!-- Populated via JavaScript -->
-    </div>
+    <div id="product-grid" class="product-grid"></div>
 
     <!-- Empty State -->
     <div id="empty-state" class="empty-state">
@@ -405,9 +2418,7 @@
         <p>Sua sacola está vazia no momento.</p>
         <p style="font-size:12px; margin-top:4px;">Navegue no catálogo e adicione suas fragrâncias favoritas!</p>
       </div>
-      <div id="cart-items-container" class="cart-items-list">
-        <!-- Rendered by JS -->
-      </div>
+      <div id="cart-items-container" class="cart-items-list"></div>
     </div>
 
     <div class="cart-drawer-footer">
@@ -488,7 +2499,6 @@
     <div class="footer-container">
       <div class="footer-brand">
         <div class="footer-brand-header">
-          <img class="footer-brand-logo" src="public/images/logo-ac.svg" alt="AC Perfumes">
           <h4>AC Perfumes</h4>
         </div>
         <p>Especialista em alta perfumaria importada e perfumes árabes nobres de Dubai. Trabalhamos exclusivamente com frascos originais e lacrados, garantindo procedência, fixação marcante e atendimento atencioso.</p>
@@ -521,7 +2531,407 @@
     </div>
   </footer>
 
-  <!-- Application Logic -->
-  <script src="js/app.js"></script>
+  <!-- ==========================================================================
+       Storefront Database & Logic (Inlined for 100% Guaranteed Execution)
+       ========================================================================== -->
+  <script>
+    const WHATSAPP_PHONE = "5516991907811";
+    const STORE_NAME = "AC Perfumes";
+
+    const perfumes = [
+      // 18 Árabes
+      { id: 1, name: "Monarch", brand: "Al Wataniah (Rawae'e Monarch)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 400,00", priceValue: 400.00, category: "arabes", gender: "masculino", badgeText: "Árabe Nobre", badgeClass: "badge-arabe", image: "public/images/perfumes/monarch.jpg", description: "Aromático frutado com toque oriental luxuoso. Abertura refinada com oxicoco (cranberry) e mandarina, corpo de rosa búlgara, magnólia e gerânio, e fundo quente de almíscar e patchouli." },
+      { id: 2, name: "Off Nature", brand: "Lattafa Pride (Art of Nature I)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 480,00", priceValue: 480.00, category: "arabes", gender: "unissex", badgeText: "Árabe Exclusivo", badgeClass: "badge-arabe", image: "public/images/perfumes/off-nature.jpg", description: "Criação de alta costura da linha Lattafa Pride. Notas profundas de figo, ameixa e groselha preta sobre uma base suntuosa de couro nobre, oud (agarwood) e baunilha aveludada." },
+      { id: 3, name: "Yara Rosa", brand: "Lattafa Perfumes", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 340,00", priceValue: 340.00, category: "arabes", gender: "feminino", badgeText: "Árabe Mais Vendido", badgeClass: "badge-arabe", image: "public/images/perfumes/yara-rosa.jpg", description: "O perfume árabe feminino mais famoso e cobiçado do mundo. Fragrância gourmand cremosa, com acordes de heliotrópio, tangerina, orquídea, frutas tropicais doces, baunilha e almíscar." },
+      { id: 4, name: "Safeek", brand: "Lattafa (Al Noble Safeer)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 300,00", priceValue: 300.00, category: "arabes", gender: "masculino", badgeText: "Árabe Nobre", badgeClass: "badge-arabe", image: "public/images/perfumes/safeek.webp", description: "Frasco icônico verde com tampa em escultura régia. Aroma aromático e especiado fresco com notas de artemísia, bergamota, ervas aromáticas finas, cipreste e madeiras nobres." },
+      { id: 5, name: "Durrat", brand: "Al Wataniah (Durrat Al Aroos)", volume: "Eau de Parfum 85ml", priceFormatted: "R$ 340,00", priceValue: 340.00, category: "arabes", gender: "feminino", badgeText: "Árabe Feminino", badgeClass: "badge-arabe", image: "public/images/perfumes/durrat.jpg", description: "Conhecido como a 'Pérola da Noiva'. Fragrância oriental refinada com almíscar branco sensual, baunilha suave, âmbar aconchegante e toques de orquídea e fava tonka." },
+      { id: 6, name: "Asad Boukbon", brand: "Lattafa (Asad Bourbon)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 460,00", priceValue: 460.00, category: "arabes", gender: "masculino", badgeText: "Árabe Masculino", badgeClass: "badge-arabe", image: "public/images/perfumes/asad-bourbon.jpg", description: "Lançamento de alta intensidade da Lattafa. Combinação inebriante de ameixa Mirabelle, lavanda fina, cacau intenso, noz-moscada e rica baunilha Bourbon amadeirada." },
+      { id: 7, name: "Sabah", brand: "Al Wataniah (Sabah Al Ward)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 240,00", priceValue: 240.00, category: "arabes", gender: "feminino", badgeText: "Árabe Feminino", badgeClass: "badge-arabe", image: "public/images/perfumes/sabah.jpg", description: "Sensação árabe misteriosa e sedutora. Notas de pimenta rosa, mandarina, cacau refinado, jasmim sambac, fava tonka e baunilha doce marcante." },
+      { id: 8, name: "Yara Tous", brand: "Lattafa Perfumes", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 280,00", priceValue: 280.00, category: "arabes", gender: "feminino", badgeText: "Árabe Feminino", badgeClass: "badge-arabe", image: "public/images/perfumes/yara-tous.jpg", description: "A versão tropical e ensolarada da linha Yara (frasco amarelo). Explosão cremosa de manga madura, coco suculento, maracujá, jasmim e um fundo aveludado de baunilha e cashmeran." },
+      { id: 9, name: "Watani", brand: "Al Wataniah", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 240,00", priceValue: 240.00, category: "arabes", gender: "feminino", badgeText: "Árabe Feminino", badgeClass: "badge-arabe", image: "public/images/perfumes/watani.webp", description: "Fragrância radiante e festiva. Mistura frutada e doce com notas tropicais ricas, acordes florais vibrantes, âmbar dourado e almíscar sedoso de Dubai." },
+      { id: 10, name: "Asad", brand: "Lattafa Perfumes", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 340,00", priceValue: 340.00, category: "arabes", gender: "masculino", badgeText: "Árabe Mais Vendido", badgeClass: "badge-arabe", image: "public/images/perfumes/asad.jpg", description: "O maior clássico masculino da Lattafa. Notas de pimenta preta, tabaco aromático, abacaxi caramelizado, café, íris e âmbar amadeirado. Potente e de altíssima fixação." },
+      { id: 11, name: "Club Intense", brand: "Armaf (Club de Nuit)", volume: "Eau de Toilette 105ml", priceFormatted: "R$ 440,00", priceValue: 440.00, category: "arabes", gender: "masculino", badgeText: "Árabe Masculino", badgeClass: "badge-arabe", image: "public/images/perfumes/club-intense.webp", description: "Lendário perfume árabe com projeção avassaladora. Abre com limão fresco, abacaxi e groselha preta, evoluindo para bétula esfumaçada, jasmim e patchouli nobre." },
+      { id: 12, name: "No 2", brand: "Maison Alhambra (No. 2 Men)", volume: "Eau de Parfum 80ml", priceFormatted: "R$ 320,00", priceValue: 320.00, category: "arabes", gender: "masculino", badgeText: "Árabe Masculino", badgeClass: "badge-arabe", image: "public/images/perfumes/no-2.webp", description: "Fragrância sofisticada inspirada no estilo urbano contemporâneo. Notas frescas de bergamota e lavanda combinadas com cardamomo, gengibre, sândalo e incenso." },
+      { id: 13, name: "Olivia", brand: "Maison Alhambra", volume: "Eau de Parfum 80ml", priceFormatted: "R$ 300,00", priceValue: 300.00, category: "arabes", gender: "feminino", badgeText: "Árabe Feminino", badgeClass: "badge-arabe", image: "public/images/perfumes/olivia.webp", description: "Fragrância feminina de deusa. Acorde viciante de baunilha salgada, tangerina verde, flor de gengibre, jasmim aquático, âmbar cinzento e sândalo cremoso." },
+      { id: 14, name: "Sabah Sugar", brand: "Al Wataniah (Sabah Sugar)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 240,00", priceValue: 240.00, category: "arabes", gender: "feminino", badgeText: "Árabe Feminino", badgeClass: "badge-arabe", image: "public/images/perfumes/sabah-sugar.webp", description: "A doçura irresistível da linha Sabah. Explosão de frutas vermelhas silvestres com calda de açúcar, morango, cereja, jasmim delicado e baunilha aveludada." },
+      { id: 15, name: "Jouri", brand: "Lattafa Perfumes", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 480,00", priceValue: 480.00, category: "arabes", gender: "feminino", badgeText: "Árabe Feminino", badgeClass: "badge-arabe", image: "public/images/perfumes/jouri.webp", description: "Floral frutal refinado com notas exóticas de pitaya (dragon fruit), cereja, laranja doce, peônia, flor de lótus, fava tonka e baunilha quente." },
+      { id: 16, name: "Fakhar Boud", brand: "Lattafa (Fakhar Gold)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 360,00", priceValue: 360.00, category: "arabes", gender: "unissex", badgeText: "Árabe Nobre", badgeClass: "badge-arabe", image: "public/images/perfumes/fakhar-boud.webp", description: "Edição de luxo dourada da linha Fakhar. Acordes de toranja, pimenta rosa, tuberosa elegante, notas solares, couro aveludado e cashmeran opulento." },
+      { id: 17, name: "Wazzer", brand: "Lattafa (Al Noble Wazeer)", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 360,00", priceValue: 360.00, category: "arabes", gender: "masculino", badgeText: "Árabe Masculino", badgeClass: "badge-arabe", image: "public/images/perfumes/wazzer.webp", description: "Apresentação régia com detalhes nobres. Toques licorosos e amadeirados de conhaque, uísque, açafrão nobre, sândalo, cedro, mirra e baunilha." },
+      { id: 18, name: "Victoria Lattafa", brand: "Lattafa Perfumes", volume: "Eau de Parfum 100ml", priceFormatted: "R$ 273,00", priceValue: 273.00, category: "arabes", gender: "feminino", badgeText: "Árabe Feminino", badgeClass: "badge-arabe", image: "public/images/perfumes/victoria-lattafa.webp", description: "Lançamento doce e refinado com a deliciosa nota de torta de limão com merengue, néroli fresco e um rastro aconchegante de baunilha pura." },
+
+      // 23 Importados Consagrados
+      { id: 19, name: "212 VIP Rosé", brand: "Carolina Herrera", volume: "Eau de Parfum", priceFormatted: "R$ 1.054,00", priceValue: 1054.00, category: "femininos", gender: "feminino", badgeText: "Importado Luxo", badgeClass: "badge-feminino", image: "public/images/perfumes/212-vip-rose.jpg", description: "O clássico do glamour nova-iorquino. Acorde espumante de champagne rosé com pimenta rosa, flor de pêssego e fundo amadeirado sofisticado de Queen Wood e almíscar branco." },
+      { id: 20, name: "212 VIP Rosé Elixir", brand: "Carolina Herrera", volume: "Eau de Parfum", priceFormatted: "R$ 811,00", priceValue: 811.00, category: "femininos", gender: "feminino", badgeText: "Importado Luxo", badgeClass: "badge-feminino", image: "public/images/perfumes/212-vip-rose-elixir.jpg", description: "Versão ultra intensa e sensual do VIP Rosé com glitter. Groselha preta, flor de cerejeira, tangerina suculenta, patchouli e baunilha de Madagascar." },
+      { id: 21, name: "Million Gold", brand: "Rabanne (Million Gold For Her)", volume: "Eau de Parfum", priceFormatted: "R$ 1.165,00", priceValue: 1165.00, category: "femininos", gender: "feminino", badgeText: "Importado Luxo", badgeClass: "badge-feminino", image: "public/images/perfumes/million-gold.png", description: "O grande lançamento de luxo da Rabanne com elo dourado XL. Fragrância floral metálica inovadora com flores brancas voluptuosas, lavanda feminina e almíscar mineral." },
+      { id: 22, name: "Lady Million", brand: "Rabanne", volume: "Eau de Parfum", priceFormatted: "R$ 912,00", priceValue: 912.00, category: "femininos", gender: "feminino", badgeText: "Importado Luxo", badgeClass: "badge-feminino", image: "public/images/perfumes/lady-million.jpg", description: "O cobiçado diamante dourado. Floral amadeirado fresco com néroli, framboesa, laranja amarga, jasmim sambac, flor de laranjeira, mel doce e patchouli." },
+      { id: 23, name: "Bottled Tonic", brand: "Hugo Boss (BOSS Bottled)", volume: "Eau de Toilette", priceFormatted: "R$ 679,00", priceValue: 679.00, category: "masculinos", gender: "masculino", badgeText: "Importado Masculino", badgeClass: "badge-masculino", image: "public/images/perfumes/bottled-tonic.webp", description: "Frescor revigorante para o homem contemporâneo. Notas vibrantes de maçã fresca, toranja, laranja amarga, gengibre picante, canela e vetiver sofisticado." },
+      { id: 24, name: "Bottled Infinite", brand: "Hugo Boss (BOSS Bottled)", volume: "Eau de Parfum", priceFormatted: "R$ 588,00", priceValue: 588.00, category: "masculinos", gender: "masculino", badgeText: "Importado Masculino", badgeClass: "badge-masculino", image: "public/images/perfumes/bottled-infinite.webp", description: "Fragrância profunda e energizante com maçã, mandarina, canela, lavanda da Provença, alecrim e madeiras nobres de sândalo e oliveira." },
+      { id: 25, name: "Hugo Boss Bottled Night", brand: "Hugo Boss", volume: "Eau de Toilette", priceFormatted: "R$ 486,00", priceValue: 486.00, category: "masculinos", gender: "masculino", badgeText: "Importado Masculino", badgeClass: "badge-masculino", image: "public/images/perfumes/hugo-boss-bottled-night.webp", description: "Desenvolvido para conquistar a noite. Aroma magnético com lavanda, bétula, violeta africana, louro amarelo e madeira nobre de Louro Amarelo com almíscar." },
+      { id: 26, name: "Alive Intense", brand: "Hugo Boss (BOSS Alive)", volume: "Eau de Parfum", priceFormatted: "R$ 770,00", priceValue: 770.00, category: "femininos", gender: "feminino", badgeText: "Importado Feminino", badgeClass: "badge-feminino", image: "public/images/perfumes/alive-intense.jpg", description: "Fragrância ousada que celebra a paixão pela vida. Abertura marcante de framboesa suculenta, corpo de vetiver amadeirado e fundo quente de benjoim dourado." },
+      { id: 27, name: "Hugo Boss In Motion", brand: "Hugo Boss", volume: "Eau de Toilette", priceFormatted: "R$ 334,00", priceValue: 334.00, category: "masculinos", gender: "masculino", badgeText: "Importado Masculino", badgeClass: "badge-masculino", image: "public/images/perfumes/hugo-boss-in-motion.webp", description: "A clássica esfera prateada de Hugo Boss. Oriental fougère dinâmico com bergamota, folhas de violeta, manjericão, pimenta rosa, canela, cardamomo e sândalo." },
+      { id: 28, name: "Azzaro Wanted Eau de Toilette", brand: "Azzaro", volume: "Eau de Toilette", priceFormatted: "R$ 486,00", priceValue: 486.00, category: "masculinos", gender: "masculino", badgeText: "Importado Masculino", badgeClass: "badge-masculino", image: "public/images/perfumes/azzaro-wanted-edt.jpg", description: "Frasco emblemático em formato de tambor de revólver. Amadeirado cítrico com limão da Calábria, gengibre fresco, cardamomo da Guatemala, zimbro e fava tonka." },
+      { id: 29, name: "Azzaro Wanted Eau de Parfum", brand: "Azzaro", volume: "Eau de Parfum", priceFormatted: "R$ 512,00", priceValue: 512.00, category: "masculinos", gender: "masculino", badgeText: "Importado Masculino", badgeClass: "badge-masculino", image: "public/images/perfumes/azzaro-wanted-edp.jpg", description: "A versão mais encorpada e sensual de Wanted. Acordes intensos de bagas de zimbro, sálvia aromática e vetiver terroso de alta densidade." },
+      { id: 30, name: "Ange ou Démon Givenchy", brand: "Givenchy", volume: "Eau de Parfum", priceFormatted: "R$ 811,00", priceValue: 811.00, category: "femininos", gender: "feminino", badgeText: "Importado Luxo", badgeClass: "badge-feminino", image: "public/images/perfumes/ange-ou-demon.jpg", description: "Frasco em formato de gota de cristal facetada. Oriental floral fascinante que transita entre a luz e a sombra: tomilho branco, mandarina, lírio nobre, orquídea, fava tonka e baunilha." },
+      { id: 31, name: "Invictus Victory Elixir", brand: "Rabanne", volume: "Parfum Intense", priceFormatted: "R$ 760,00", priceValue: 760.00, category: "masculinos", gender: "masculino", badgeText: "Importado Luxo", badgeClass: "badge-masculino", image: "public/images/perfumes/invictus-victory-elixir.jpg", description: "O ápice da intensidade Invictus. Troféu laqueado com notas de lavandim fresco, cardamomo verde, incenso misterioso, patchouli da Indonésia e fava tonka licorosa." },
+      { id: 32, name: "Phantom", brand: "Rabanne", volume: "Eau de Toilette", priceFormatted: "R$ 1.115,00", priceValue: 1115.00, category: "masculinos", gender: "masculino", badgeText: "Importado Luxo", badgeClass: "badge-masculino", image: "public/images/perfumes/phantom.jpg", description: "O futurista frasco robô cromado da Rabanne. Fragrância energizante e aromática com lavanda cremosa, raspas de limão energizantes, maçã, fumaça terrosa e baunilha sensual." },
+      { id: 33, name: "1 Million", brand: "Rabanne", volume: "Eau de Toilette", priceFormatted: "R$ 608,00", priceValue: 608.00, category: "masculinos", gender: "masculino", badgeText: "Importado Ícone", badgeClass: "badge-masculino", image: "public/images/perfumes/1-million.jpg", description: "A lendária barra de ouro de Rabanne. Pomelo radiante, hortelã fresca, mandarina sangínea, rosa absoluta, canela picante, couro aveludado e âmbar keta." },
+      { id: 34, name: "Azzaro By Night", brand: "Azzaro (Wanted by Night)", volume: "Eau de Parfum", priceFormatted: "R$ 740,00", priceValue: 740.00, category: "masculinos", gender: "masculino", badgeText: "Importado Noturno", badgeClass: "badge-masculino", image: "public/images/perfumes/azzaro-by-night.webp", description: "O elixir noturno da sedução. Canela quente, tangerina amarela, cedro vermelho, incenso, tabaco aromático e cipreste. Feito para noites memoráveis." },
+      { id: 35, name: "Azzaro The Most Parfum", brand: "Azzaro (The Most Wanted)", volume: "Parfum", priceFormatted: "R$ 730,00", priceValue: 730.00, category: "masculinos", gender: "masculino", badgeText: "Importado Intenso", badgeClass: "badge-masculino", image: "public/images/perfumes/azzaro-the-most-parfum.webp", description: "Frasco todo preto fosco de puro requinte. Gengibre vermelho flamejante, acordes amadeirados intensos e baunilha Bourbon de Madagascar ultra encorpada." },
+      { id: 36, name: "Azzaro Pour", brand: "Azzaro (Pour Homme)", volume: "Eau de Toilette", priceFormatted: "R$ 350,00", priceValue: 350.00, category: "masculinos", gender: "masculino", badgeText: "Importado Clássico", badgeClass: "badge-masculino", image: "public/images/perfumes/azzaro-pour.jpg", description: "O maior ícone da perfumaria masculina tradicional francesa. Acorde atemporal com anis estrelado, lavanda, manjericão, vetiver, sândalo, patchouli, musgo de carvalho e couro." },
+      { id: 37, name: "Azzaro Chrome 100 ml", brand: "Azzaro (Chrome)", volume: "Eau de Toilette 100ml", priceFormatted: "R$ 446,00", priceValue: 446.00, category: "masculinos", gender: "masculino", badgeText: "Importado Frescor", badgeClass: "badge-masculino", image: "public/images/perfumes/azzaro-chrome-100ml.jpg", description: "Sensação do frescor mediterrâneo em 100ml. Limão refrescante, bergamota, alecrim, néroli, abacaxi, ciclâmen, coentro, musgo de carvalho e cedro nobre." },
+      { id: 38, name: "Azzaro Chrome 200 ml", brand: "Azzaro (Chrome)", volume: "Eau de Toilette 200ml", priceFormatted: "R$ 567,00", priceValue: 567.00, category: "masculinos", gender: "masculino", badgeText: "Importado 200ml", badgeClass: "badge-masculino", image: "public/images/perfumes/azzaro-chrome-200ml.png", description: "A clássica assinatura fresca de Azzaro Chrome na imponente volumetria de 200ml. Perfeito para uso diário prolongado com elegância e vigor." },
+      { id: 39, name: "Eternity Moment", brand: "Calvin Klein", volume: "Eau de Parfum", priceFormatted: "R$ 354,00", priceValue: 354.00, category: "femininos", gender: "feminino", badgeText: "Importado Feminino", badgeClass: "badge-feminino", image: "public/images/perfumes/eternity-moment.webp", description: "Fragrância romântica e luminosa. Framboesa, lichia, melão, flor de romã, peônia rosa da China, jasmim, nenúfar aquático e sândalo delicado." },
+      { id: 40, name: "Azzaro Pour Elle", brand: "Azzaro", volume: "Eau de Parfum", priceFormatted: "R$ 395,00", priceValue: 395.00, category: "femininos", gender: "feminino", badgeText: "Importado Feminino", badgeClass: "badge-feminino", image: "public/images/perfumes/azzaro-pour-elle.jpg", description: "O reflexo feminino da sedução Azzaro. Cardamomo picante, champanhe efervescente, rosa de maio sedutora, lírio e madeira de caxemira envolvente." },
+      { id: 41, name: "Azzaro Chrome Azure", brand: "Azzaro", volume: "Eau de Toilette", priceFormatted: "R$ 415,00", priceValue: 415.00, category: "masculinos", gender: "masculino", badgeText: "Importado Frescor", badgeClass: "badge-masculino", image: "public/images/perfumes/azzaro-chrome-azure.webp", description: "Lançamento de frescor aquático. O degradê azul do Mediterrâneo traduzido em bergamota italiana cintilante, lavanda francesa e brisa marinha refrescante." }
+    ];
+
+    let currentCategory = 'all';
+    let searchQuery = '';
+    let sortMode = 'featured';
+    let cart = [];
+
+    try {
+      const saved = localStorage.getItem('ac_perfumes_cart');
+      if (saved) cart = JSON.parse(saved);
+    } catch (e) { cart = []; }
+
+    function saveCart() {
+      try { localStorage.setItem('ac_perfumes_cart', JSON.stringify(cart)); } catch (e) {}
+      updateCartBadges();
+      renderCart();
+    }
+
+    const grid = document.getElementById('product-grid');
+    const countDisplay = document.getElementById('product-count');
+    const searchInput = document.getElementById('search-input');
+    const searchClear = document.getElementById('search-clear');
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const sortSelect = document.getElementById('sort-select');
+    const emptyState = document.getElementById('empty-state');
+    const resetFiltersBtn = document.getElementById('reset-filters-btn');
+
+    const cartOverlay = document.getElementById('cart-overlay');
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartCloseBtn = document.getElementById('cart-close-btn');
+    const cartToggleBtns = document.querySelectorAll('.cart-toggle-trigger');
+    const cartBadges = document.querySelectorAll('.cart-badge-count');
+    const cartItemsContainer = document.getElementById('cart-items-container');
+    const cartEmptyMsg = document.getElementById('cart-empty-msg');
+    const cartTotalPrice = document.getElementById('cart-total-price');
+    const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
+
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalClose = document.getElementById('modal-close');
+    const modalImg = document.getElementById('modal-img');
+    const modalBadge = document.getElementById('modal-badge');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBrand = document.getElementById('modal-brand');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalPrice = document.getElementById('modal-price');
+    const modalInstallment = document.getElementById('modal-installment');
+    const modalWhatsAppBtn = document.getElementById('modal-whatsapp-btn');
+    const modalAddBagBtn = document.getElementById('modal-add-bag-btn');
+
+    function formatBRL(num) {
+      return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function createWhatsAppDirectLink(name, price) {
+      const msg = `Olá, AC Perfumes! Tenho interesse no perfume ${name}, no valor de ${price}. Gostaria de confirmar a disponibilidade e o frete.`;
+      return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
+    }
+
+    function showToast(message) {
+      let toast = document.getElementById('toast-notice');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast-notice';
+        toast.className = 'toast-notice';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<span>✨</span> <span>${message}</span>`;
+      toast.classList.add('show');
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => { toast.classList.remove('show'); }, 2800);
+    }
+
+    function updateCartBadges() {
+      const totalCount = cart.reduce((acc, item) => acc + item.qty, 0);
+      cartBadges.forEach(badge => {
+        badge.textContent = totalCount;
+      });
+    }
+
+    function renderProducts() {
+      const q = searchQuery.toLowerCase().trim();
+
+      let filtered = perfumes.filter(p => {
+        let matchesCat = true;
+        if (currentCategory === 'arabes') matchesCat = (p.category === 'arabes');
+        else if (currentCategory === 'femininos') matchesCat = (p.gender === 'feminino' || p.category === 'femininos' || p.gender === 'unissex');
+        else if (currentCategory === 'masculinos') matchesCat = (p.gender === 'masculino' || p.category === 'masculinos' || p.gender === 'unissex');
+
+        const matchesSrch = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.description.toLowerCase().includes(q);
+        return matchesCat && matchesSrch;
+      });
+
+      if (sortMode === 'price-asc') filtered.sort((a, b) => a.priceValue - b.priceValue);
+      else if (sortMode === 'price-desc') filtered.sort((a, b) => b.priceValue - a.priceValue);
+      else if (sortMode === 'name-asc') filtered.sort((a, b) => a.name.localeCompare(b.name));
+
+      countDisplay.textContent = `Exibindo ${filtered.length} perfume${filtered.length === 1 ? '' : 's'}`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
+      grid.innerHTML = filtered.map(p => {
+        const waLink = createWhatsAppDirectLink(p.name, p.priceFormatted);
+        const installmentVal = (p.priceValue / 10).toFixed(2).replace('.', ',');
+        return `
+          <article class="product-card" data-id="${p.id}">
+            <div class="card-photo-wrapper" onclick="openModal(${p.id})">
+              <span class="card-badge ${p.badgeClass}">${p.badgeText}</span>
+              <img class="card-photo" 
+                   src="${p.image}" 
+                   alt="${p.name}" 
+                   loading="lazy"
+                   onerror="if(!this.dataset.t1){this.dataset.t1='1';this.src='${p.image.replace('public/','')}';}else if(!this.dataset.t2){this.dataset.t2='1';this.src='${p.image.replace('public/images/','')}';}">
+              <button class="card-details-btn" title="Ver detalhes" onclick="event.stopPropagation(); openModal(${p.id});">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+            <div class="card-content">
+              <div>
+                <span class="card-meta">${p.brand}</span>
+                <h4 class="card-title" onclick="openModal(${p.id})">${p.name}</h4>
+              </div>
+              <div>
+                <div class="card-price-row">
+                  <span class="card-price-label">Valor</span>
+                  <p class="card-price">${p.priceFormatted}</p>
+                  <span class="card-installment">ou 10x de R$ ${installmentVal}</span>
+                </div>
+                <div class="card-actions-row">
+                  <a class="btn-card-whatsapp" href="${waLink}" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.584 1.802.946 2.796.946 3.181 0 5.767-2.586 5.768-5.766.001-3.18-2.585-5.767-5.768-5.767zm7.576 5.767c-.002 4.183-3.402 7.581-7.585 7.581-1.332 0-2.435-.386-3.493-.974l-4.529 1.188 1.21-4.417c-.664-1.121-1.077-2.298-1.076-3.378.002-4.183 3.402-7.581 7.585-7.581 4.183 0 7.588 3.398 7.588 7.581z"/></svg>
+                    <span>COMPRAR AGORA</span>
+                  </a>
+                  <button class="btn-card-add-cart" onclick="addToCart(${p.id})">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span>Adicionar à Sacola</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function addToCart(id, qty = 1) {
+      const p = perfumes.find(prod => prod.id === id);
+      if (!p) return;
+      const exist = cart.find(i => i.id === id);
+      if (exist) exist.qty += qty;
+      else cart.push({ id, qty });
+      saveCart();
+      showToast(`"${p.name}" adicionado à sacola!`);
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      saveCart();
+    }
+
+    function changeCartQty(id, delta) {
+      const itm = cart.find(i => i.id === id);
+      if (!itm) return;
+      itm.qty += delta;
+      if (itm.qty <= 0) removeFromCart(id);
+      else saveCart();
+    }
+
+    function renderCart() {
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '';
+        cartEmptyMsg.style.display = 'block';
+        cartTotalPrice.textContent = 'R$ 0,00';
+        cartCheckoutBtn.disabled = true;
+        cartCheckoutBtn.style.opacity = '0.5';
+        cartCheckoutBtn.style.pointerEvents = 'none';
+        return;
+      }
+
+      cartEmptyMsg.style.display = 'none';
+      cartCheckoutBtn.disabled = false;
+      cartCheckoutBtn.style.opacity = '1';
+      cartCheckoutBtn.style.pointerEvents = 'auto';
+
+      let total = 0;
+      cartItemsContainer.innerHTML = cart.map(item => {
+        const p = perfumes.find(prod => prod.id === item.id);
+        if (!p) return '';
+        total += p.priceValue * item.qty;
+        return `
+          <div class="cart-item">
+            <img class="cart-item-img" src="${p.image}" alt="${p.name}">
+            <div class="cart-item-details">
+              <h5 class="cart-item-title">${p.name}</h5>
+              <div class="cart-item-price">${formatBRL(p.priceValue)}</div>
+              <div class="cart-item-qty-row">
+                <button class="qty-btn" onclick="changeCartQty(${p.id}, -1)">-</button>
+                <span class="qty-val">${item.qty}</span>
+                <button class="qty-btn" onclick="changeCartQty(${p.id}, 1)">+</button>
+              </div>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart(${p.id})" title="Remover">✕</button>
+          </div>
+        `;
+      }).join('');
+
+      cartTotalPrice.textContent = formatBRL(total);
+
+      const lines = cart.map(item => {
+        const p = perfumes.find(prod => prod.id === item.id);
+        return `• ${item.qty}x ${p.name} (${p.volume}) - ${formatBRL(p.priceValue * item.qty)}`;
+      });
+
+      const message = `✨ *NOVO PEDIDO - AC PERFUMES* ✨\n\n` +
+        `Olá! Gostaria de consultar a disponibilidade dos seguintes perfumes:\n\n` +
+        lines.join('\n') +
+        `\n\n💳 *Valor Total:* ${formatBRL(total)}\n` +
+        `Podemos combinar o envio e forma de pagamento?`;
+
+      cartCheckoutBtn.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+    }
+
+    function openCartDrawer() {
+      cartOverlay.classList.add('active');
+      cartDrawer.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      renderCart();
+    }
+
+    function closeCartDrawer() {
+      cartOverlay.classList.remove('active');
+      cartDrawer.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    cartToggleBtns.forEach(btn => btn.addEventListener('click', openCartDrawer));
+    cartCloseBtn.addEventListener('click', closeCartDrawer);
+    cartOverlay.addEventListener('click', closeCartDrawer);
+
+    let activeModalId = null;
+
+    function openModal(id) {
+      const p = perfumes.find(i => i.id === id);
+      if (!p) return;
+      activeModalId = id;
+      modalImg.src = p.image;
+      modalBadge.textContent = p.badgeText;
+      modalBadge.className = `modal-badge ${p.badgeClass}`;
+      modalTitle.textContent = p.name;
+      modalBrand.textContent = `${p.brand} • ${p.volume}`;
+      modalDesc.textContent = p.description;
+      modalPrice.textContent = p.priceFormatted;
+      const inst = (p.priceValue / 10).toFixed(2).replace('.', ',');
+      modalInstallment.textContent = `ou em até 10x de R$ ${inst} no cartão`;
+      modalWhatsAppBtn.href = createWhatsAppDirectLink(p.name, p.priceFormatted);
+      modalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+    modalAddBagBtn.addEventListener('click', () => {
+      if (activeModalId) {
+        addToCart(activeModalId);
+        closeModal();
+        openCartDrawer();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (modalOverlay.classList.contains('active')) closeModal();
+        if (cartDrawer.classList.contains('active')) closeCartDrawer();
+      }
+    });
+
+    function scrollToCatalog() {
+      document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function focusSearch() {
+      scrollToCatalog();
+      setTimeout(() => { searchInput.focus(); }, 350);
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      filterChips.forEach(c => c.classList.toggle('active', c.dataset.filter === cat));
+      renderProducts();
+      scrollToCatalog();
+    }
+
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        filterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentCategory = chip.dataset.filter;
+        renderProducts();
+      });
+    });
+
+    sortSelect.addEventListener('change', (e) => {
+      sortMode = e.target.value;
+      renderProducts();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      searchClear.style.display = searchQuery ? 'block' : 'none';
+      renderProducts();
+    });
+
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      searchClear.style.display = 'none';
+      searchInput.focus();
+      renderProducts();
+    });
+
+    resetFiltersBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      searchClear.style.display = 'none';
+      setCategory('all');
+    });
+
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('active');
+      });
+    });
+
+    updateCartBadges();
+    renderProducts();
+    renderCart();
+  </script>
 </body>
 </html>
