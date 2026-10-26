@@ -2185,6 +2185,16 @@
       border: 1px solid var(--border-color);
     }
 
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.96) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     .admin-modal form {
       display: flex;
       flex-direction: column;
@@ -2348,6 +2358,9 @@
     <div class="admin-actions">
       <button class="btn-admin-action" onclick="openAddProductModal()">
         <span>➕</span> <span>Adicionar Produto</span>
+      </button>
+      <button class="btn-admin-action" id="btn-admin-gh-toggle" onclick="openGitHubSettingsModal()" style="background: rgba(255,255,255,0.12); border: 1px solid var(--gold-main); color: var(--gold-light);" title="Configurar envio automático direto para o GitHub">
+        <span>⚡</span> <span id="admin-gh-status-text">Conectar GitHub (Auto)</span>
       </button>
       <button class="btn-admin-action btn-admin-download" onclick="exportUpdatedIndexHtml()" title="Baixar index.html atualizado para enviar ao GitHub">
         <span>💾</span> <span>Salvar &amp; Baixar Site</span>
@@ -3030,6 +3043,95 @@
     </div>
   </div>
 
+  <!-- Modal: Diálogo de Confirmação & Sucesso Luxuoso (Substitui os popups feios do navegador) -->
+  <div id="luxury-dialog-modal" class="admin-modal-overlay">
+    <div class="admin-modal" style="max-width: 480px; text-align: center; border: 1px solid var(--gold-main); box-shadow: 0 20px 60px rgba(0,0,0,0.6);">
+      <div style="background: linear-gradient(135deg, #26160d 0%, #150a05 100%); padding: 18px 20px; border-bottom: 2px solid var(--gold-main); display: flex; align-items: center; justify-content: space-between;">
+        <h4 id="luxury-dialog-title" style="font-family: var(--font-heading); font-size: 17px; color: var(--gold-light); margin: 0; display: flex; align-items: center; gap: 8px;">
+          <span>✨</span> Informação da Loja
+        </h4>
+        <button type="button" class="admin-modal-close" onclick="closeLuxuryDialog()">&times;</button>
+      </div>
+      <div style="padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+        <div id="luxury-dialog-icon" style="font-size: 46px; line-height: 1;">✅</div>
+        <div id="luxury-dialog-msg" style="font-size: 14px; color: #4a3b32; line-height: 1.5; margin: 0; text-align: center;">
+          Mensagem informativa...
+        </div>
+
+        <!-- Ações customizadas (ex: confirmação de exclusão ou botão de ver site) -->
+        <div id="luxury-dialog-custom-actions" style="display: none; width: 100%;"></div>
+
+        <!-- Botão Ação Automática GitHub (Se o token estiver ativo) -->
+        <div id="luxury-dialog-gh-connected" style="display: none; width: 100%;">
+          <button type="button" id="luxury-dialog-btn-gh" class="btn-admin-action" onclick="publishCatalogToGitHub()" style="width: 100%; justify-content: center; background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: #ffffff; padding: 12px; font-size: 14px; font-weight: 800; border-radius: 8px; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);">
+            🚀 Publicar no GitHub Agora (Automático)
+          </button>
+        </div>
+
+        <!-- Botão Conectar GitHub (Se o token ainda não estiver configurado) -->
+        <div id="luxury-dialog-gh-disconnected" style="display: none; width: 100%;">
+          <button type="button" class="btn-admin-action" onclick="closeLuxuryDialog(); openGitHubSettingsModal();" style="width: 100%; justify-content: center; background: #1c1009; color: var(--gold-light); border: 1px solid var(--gold-main); padding: 12px 16px; font-size: 13px; font-weight: 700; border-radius: 8px; cursor: pointer;">
+            ⚡ Ativar Salvamento Direto no GitHub (Sem precisar baixar)
+          </button>
+        </div>
+
+        <div id="luxury-dialog-default-btns" style="display: flex; gap: 10px; width: 100%; justify-content: center; margin-top: 4px;">
+          <button type="button" class="btn-admin-action btn-admin-logout" onclick="closeLuxuryDialog()" style="flex: 1; padding: 10px; font-size: 13px; justify-content: center;">
+            Fechar
+          </button>
+          <button type="button" class="btn-admin-action" onclick="exportUpdatedIndexHtml(); closeLuxuryDialog();" style="flex: 1; padding: 10px; font-size: 13px; justify-content: center; background: #2c1a11; color: var(--gold-light); border: 1px solid rgba(184, 141, 64, 0.4);">
+            💾 Baixar index.html
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Conexão Automática Direta com GitHub -->
+  <div id="admin-gh-settings-modal" class="admin-modal-overlay">
+    <div class="admin-modal" style="max-width: 540px;">
+      <div class="admin-modal-header">
+        <h3><span>⚡</span> Conectar com GitHub (Auto-Save)</h3>
+        <button type="button" class="admin-modal-close" onclick="closeGitHubSettingsModal()">&times;</button>
+      </div>
+      <form onsubmit="event.preventDefault(); saveGitHubSettings();">
+        <div class="admin-modal-body">
+          <p style="font-size: 13px; color: #5a493d; line-height: 1.5; margin: 0;">
+            Conectando o seu <strong>Token do GitHub</strong>, qualquer alteração que você fizer no painel da loja será <strong>enviada e publicada diretamente no GitHub sem você precisar baixar nada</strong>!
+          </p>
+
+          <div style="background: #fdf8ee; border: 1px solid #ebd49f; padding: 12px 14px; border-radius: 8px; font-size: 12px; color: #734d12; line-height: 1.5;">
+            <strong>Como pegar o seu Token no GitHub (em 30 segundos):</strong><br>
+            1. Acesse: <a href="https://github.com/settings/tokens/new?description=AC-Perfumes-Admin&scopes=repo" target="_blank" rel="noopener" style="color: #995c00; font-weight: 700; text-decoration: underline;">Criar Novo Token no GitHub</a><br>
+            2. Marque a caixinha <strong>"repo"</strong> (acesso ao repositório).<br>
+            3. Desça e clique no botão verde <strong>"Generate token"</strong>.<br>
+            4. Copie o código gerado (começa com <code>ghp_</code>) e cole abaixo:
+          </div>
+
+          <div class="admin-form-group">
+            <label for="admin-gh-token-input">Seu Token Pessoal do GitHub (PAT) *</label>
+            <input type="password" id="admin-gh-token-input" class="admin-form-control" placeholder="Cole aqui seu ghp_..." autocomplete="off" required>
+            <span style="font-size: 11px; color: #8c7664;">O token fica salvo apenas no seu próprio navegador, com total segurança.</span>
+          </div>
+
+          <div class="admin-form-group">
+            <label for="admin-gh-repo-input">Repositório GitHub</label>
+            <input type="text" id="admin-gh-repo-input" class="admin-form-control" value="vyctorhugo543-a11y/AC-Perfumes">
+          </div>
+
+          <div id="admin-gh-test-result" style="display: none; padding: 10px; border-radius: 6px; font-size: 13px;"></div>
+        </div>
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-admin-action btn-admin-logout" onclick="closeGitHubSettingsModal()">Cancelar</button>
+          <button type="button" class="btn-admin-action" onclick="removeGitHubToken()" style="background: #ffffff; color: #dc3545; border: 1px solid #dc3545;">Desconectar</button>
+          <button type="submit" class="btn-admin-action" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: #fff;">
+            💾 Salvar &amp; Conectar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- ==========================================================================
        Storefront Database & Logic (Inlined for 100% Guaranteed Execution)
        ========================================================================== -->
@@ -3488,9 +3590,14 @@
         sessionStorage.setItem('ac_perfumes_admin', 'true');
         document.body.classList.add('admin-mode-active');
         closeAdminLoginModal();
-        showToast("Bem-vindo ao Painel ADM! O gerenciador de produtos está ativo.");
+        showToast("✨ Bem-vindo ao Painel ADM! O gerenciador de produtos está ativo.");
       } else {
-        alert("Senha incorreta! Verifique a senha digitada.");
+        showToast("⚠️ Senha incorreta! Digite acperfumes2026");
+        const passIn = document.getElementById('admin-pass-input');
+        if (passIn) {
+          passIn.value = '';
+          passIn.focus();
+        }
       }
     }
 
@@ -3641,6 +3748,301 @@
       return isNaN(num) ? 0 : num;
     }
 
+    // =========================================================================
+    // Luxury Dialog System (Zero browser alerts/confirms, 100% luxury UI)
+    // =========================================================================
+    function openLuxuryDialog(opts = {}) {
+      const modal = document.getElementById('luxury-dialog-modal');
+      const titleEl = document.getElementById('luxury-dialog-title');
+      const msgEl = document.getElementById('luxury-dialog-msg');
+      const iconEl = document.getElementById('luxury-dialog-icon');
+      const ghConnectedDiv = document.getElementById('luxury-dialog-gh-connected');
+      const ghDisconnectedDiv = document.getElementById('luxury-dialog-gh-disconnected');
+      const defaultBtnsRow = document.getElementById('luxury-dialog-default-btns');
+      const customActionsContainer = document.getElementById('luxury-dialog-custom-actions');
+
+      if (!modal) return;
+
+      if (titleEl) titleEl.innerHTML = `<span>✨</span> ${opts.title || 'Informação da Loja'}`;
+      if (msgEl) msgEl.innerHTML = opts.message || '';
+      if (iconEl) iconEl.textContent = opts.icon || '✅';
+
+      if (customActionsContainer) {
+        if (opts.customActions) {
+          customActionsContainer.innerHTML = opts.customActions;
+          customActionsContainer.style.display = 'block';
+        } else {
+          customActionsContainer.innerHTML = '';
+          customActionsContainer.style.display = 'none';
+        }
+      }
+
+      if (opts.hideButtons) {
+        if (ghConnectedDiv) ghConnectedDiv.style.display = 'none';
+        if (ghDisconnectedDiv) ghDisconnectedDiv.style.display = 'none';
+        if (defaultBtnsRow) defaultBtnsRow.style.display = 'none';
+      } else if (!opts.customActions) {
+        const hasToken = !!getGitHubToken();
+        if (opts.showGitHubAction) {
+          if (ghConnectedDiv) ghConnectedDiv.style.display = hasToken ? 'block' : 'none';
+          if (ghDisconnectedDiv) ghDisconnectedDiv.style.display = !hasToken ? 'block' : 'none';
+        } else {
+          if (ghConnectedDiv) ghConnectedDiv.style.display = 'none';
+          if (ghDisconnectedDiv) ghDisconnectedDiv.style.display = 'none';
+        }
+        if (defaultBtnsRow) defaultBtnsRow.style.display = 'flex';
+      } else {
+        if (ghConnectedDiv) ghConnectedDiv.style.display = 'none';
+        if (ghDisconnectedDiv) ghDisconnectedDiv.style.display = 'none';
+        if (defaultBtnsRow) defaultBtnsRow.style.display = 'none';
+      }
+
+      modal.classList.add('active');
+    }
+
+    function closeLuxuryDialog() {
+      const modal = document.getElementById('luxury-dialog-modal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    // =========================================================================
+    // GitHub Direct Auto-Sync Integration (Via GitHub REST API)
+    // =========================================================================
+    const GH_DEFAULT_REPO = "vyctorhugo543-a11y/AC-Perfumes";
+    const GH_FILE_PATH = "index.html";
+
+    function getGitHubToken() {
+      return localStorage.getItem('ac_perfumes_gh_token') || '';
+    }
+
+    function getGitHubRepo() {
+      return localStorage.getItem('ac_perfumes_gh_repo') || GH_DEFAULT_REPO;
+    }
+
+    function updateGitHubStatusUI() {
+      const token = getGitHubToken();
+      const statusText = document.getElementById('admin-gh-status-text');
+      const toggleBtn = document.getElementById('btn-admin-gh-toggle');
+      if (!statusText || !toggleBtn) return;
+
+      if (token) {
+        statusText.textContent = "✅ GitHub Conectado (Auto)";
+        toggleBtn.style.background = "linear-gradient(135deg, rgba(37,211,102,0.25) 0%, rgba(18,140,126,0.35) 100%)";
+        toggleBtn.style.borderColor = "#25d366";
+        toggleBtn.style.color = "#75fbc0";
+        toggleBtn.title = "GitHub conectado! Mudanças são salvas e publicadas automaticamente online.";
+      } else {
+        statusText.textContent = "⚡ Conectar GitHub (Auto)";
+        toggleBtn.style.background = "rgba(255,255,255,0.12)";
+        toggleBtn.style.borderColor = "var(--gold-main)";
+        toggleBtn.style.color = "var(--gold-light)";
+        toggleBtn.title = "Configurar token do GitHub para publicar alterações automaticamente com 1 clique";
+      }
+    }
+
+    function openGitHubSettingsModal() {
+      const tokenInput = document.getElementById('admin-gh-token-input');
+      const repoInput = document.getElementById('admin-gh-repo-input');
+      const resultBox = document.getElementById('admin-gh-test-result');
+      if (tokenInput) tokenInput.value = getGitHubToken();
+      if (repoInput) repoInput.value = getGitHubRepo();
+      if (resultBox) {
+        resultBox.style.display = 'none';
+        resultBox.innerHTML = '';
+      }
+      document.getElementById('admin-gh-settings-modal').classList.add('active');
+    }
+
+    function closeGitHubSettingsModal() {
+      document.getElementById('admin-gh-settings-modal').classList.remove('active');
+    }
+
+    async function saveGitHubSettings() {
+      const token = document.getElementById('admin-gh-token-input').value.trim();
+      let repo = document.getElementById('admin-gh-repo-input').value.trim() || GH_DEFAULT_REPO;
+      const resultBox = document.getElementById('admin-gh-test-result');
+
+      if (!token) {
+        openLuxuryDialog({
+          title: "Token Obrigatório",
+          message: "Por favor, cole o seu Token Pessoal do GitHub (PAT) gerado no site do GitHub.",
+          icon: "⚠️"
+        });
+        return;
+      }
+
+      resultBox.style.display = 'block';
+      resultBox.style.background = '#eef2ff';
+      resultBox.style.color = '#3730a3';
+      resultBox.style.border = '1px solid #c7d2fe';
+      resultBox.innerHTML = '🔄 Verificando permissões no repositório GitHub...';
+
+      try {
+        const res = await fetch(`https://api.github.com/repos/${repo}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (res.ok) {
+          localStorage.setItem('ac_perfumes_gh_token', token);
+          localStorage.setItem('ac_perfumes_gh_repo', repo);
+          updateGitHubStatusUI();
+          resultBox.style.background = '#dcfce7';
+          resultBox.style.color = '#166534';
+          resultBox.style.border = '1px solid #86efac';
+          resultBox.innerHTML = '✅ Conectado com sucesso ao GitHub!';
+          setTimeout(() => {
+            closeGitHubSettingsModal();
+            openLuxuryDialog({
+              title: "GitHub Conectado!",
+              message: `Parabéns! Sua loja está conectada com o repositório <strong>${repo}</strong>.<br><br>Agora, qualquer alteração ou novo perfume adicionado será <strong>enviado diretamente para o GitHub</strong> ao clicar em <strong>Salvar Alterações</strong>!`,
+              icon: "🚀"
+            });
+          }, 700);
+        } else {
+          const err = await res.json().catch(() => ({}));
+          resultBox.style.background = '#fee2e2';
+          resultBox.style.color = '#991b1b';
+          resultBox.style.border = '1px solid #fca5a5';
+          resultBox.innerHTML = `❌ Erro (${res.status}): ${err.message || 'Token inválido ou sem permissão'}. Certifique-se de marcar a caixinha "repo" ao criar o token.`;
+        }
+      } catch (e) {
+        resultBox.style.background = '#fee2e2';
+        resultBox.style.color = '#991b1b';
+        resultBox.style.border = '1px solid #fca5a5';
+        resultBox.innerHTML = '❌ Erro de conexão com o GitHub: ' + e.message;
+      }
+    }
+
+    function removeGitHubToken() {
+      localStorage.removeItem('ac_perfumes_gh_token');
+      updateGitHubStatusUI();
+      closeGitHubSettingsModal();
+      openLuxuryDialog({
+        title: "Desconectado do GitHub",
+        message: "O token do GitHub foi removido deste navegador. As alterações agora serão salvas localmente e você poderá baixar o <strong>index.html</strong> manualmente.",
+        icon: "ℹ️"
+      });
+    }
+
+    function getCleanUpdatedHtml() {
+      const serializedCatalog = 'let perfumes = ' + JSON.stringify(perfumes, null, 2) + ';';
+      let html = document.documentElement.outerHTML;
+
+      // Remove admin runtime classes
+      html = html.replace(/\badmin-mode-active\b/g, '')
+                 .replace(/admin-modal-overlay active/g, 'admin-modal-overlay')
+                 .replace(/cart-drawer active/g, 'cart-drawer')
+                 .replace(/cart-overlay active/g, 'cart-overlay');
+
+      // Replace catalog database
+      html = html.replace(/let perfumes = \[[\s\S]*?\n\s*\];/, serializedCatalog);
+
+      return '<!DOCTYPE html>\n<html lang="pt-BR">\n' + html + '\n</html>';
+    }
+
+    async function publishCatalogToGitHub(customMessage) {
+      const token = getGitHubToken();
+      const repo = getGitHubRepo();
+
+      if (!token) {
+        openGitHubSettingsModal();
+        return;
+      }
+
+      const commitMsg = customMessage || `Atualização de catálogo AC Perfumes [${new Date().toLocaleString('pt-BR')}]`;
+
+      openLuxuryDialog({
+        title: "Publicando no GitHub...",
+        message: `<div style="display:flex; flex-direction:column; align-items:center; gap:12px; padding:10px 0;">
+                    <div style="font-size:36px; animation: spin 1.2s linear infinite;">⏳</div>
+                    <div style="font-size:14px; color:#3a2a20;">Enviando atualização para o repositório <strong>${repo}</strong>...</div>
+                    <div style="font-size:12px; color:#8c7664;">O GitHub Pages publicará a nova versão automaticamente.</div>
+                  </div>`,
+        icon: "⚡",
+        hideButtons: true
+      });
+
+      try {
+        // 1. Get current SHA
+        const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/${GH_FILE_PATH}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        let currentSha = null;
+        if (getRes.ok) {
+          const fileData = await getRes.json();
+          currentSha = fileData.sha;
+        }
+
+        // 2. Base64 UTF-8
+        const updatedHtml = getCleanUpdatedHtml();
+        const b64Content = btoa(unescape(encodeURIComponent(updatedHtml)));
+
+        // 3. Put File
+        const payload = {
+          message: commitMsg,
+          content: b64Content
+        };
+        if (currentSha) {
+          payload.sha = currentSha;
+        }
+
+        const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/${GH_FILE_PATH}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (putRes.ok) {
+          openLuxuryDialog({
+            title: "🎉 Publicado no GitHub com Sucesso!",
+            message: `A nova versão da loja foi enviada diretamente para o repositório <strong>${repo}</strong>!<br><br>O <strong>GitHub Pages</strong> atualiza em aproximadamente <strong>30 a 60 segundos</strong> e todos os clientes verão as novidades na internet.`,
+            icon: "🚀",
+            customActions: `
+              <div style="display:flex; flex-direction:column; gap:8px; width:100%;">
+                <a href="https://vyctorhugo543-a11y.github.io/AC-Perfumes/" target="_blank" rel="noopener" class="btn-admin-action" style="width:100%; justify-content:center; text-decoration:none; background:linear-gradient(135deg, #25d366 0%, #128c7e 100%); color:#fff; padding:12px; font-size:13px; font-weight:700; border-radius:8px; box-sizing:border-box;">
+                  🌐 Abrir Site no GitHub Pages
+                </a>
+                <button type="button" class="btn-admin-action btn-admin-logout" onclick="closeLuxuryDialog()" style="width:100%; justify-content:center; padding:10px; font-size:13px;">
+                  Concluir &amp; Fechar
+                </button>
+              </div>
+            `
+          });
+        } else {
+          const errData = await putRes.json().catch(() => ({}));
+          throw new Error(errData.message || `Erro HTTP ${putRes.status}`);
+        }
+      } catch (err) {
+        console.error("Erro ao enviar para o GitHub:", err);
+        openLuxuryDialog({
+          title: "Não foi possível enviar ao GitHub",
+          message: `Ocorreu um erro ao conectar com a API do GitHub:<br><br><code>${err.message}</code><br><br>Você pode baixar o arquivo <strong>index.html</strong> atualizado abaixo para enviar manualmente:`,
+          icon: "⚠️",
+          customActions: `
+            <div style="display:flex; gap:10px; width:100%;">
+              <button type="button" class="btn-admin-action btn-admin-logout" onclick="closeLuxuryDialog()" style="flex:1; justify-content:center; padding:10px;">
+                Fechar
+              </button>
+              <button type="button" class="btn-admin-action" onclick="exportUpdatedIndexHtml(); closeLuxuryDialog();" style="flex:1; justify-content:center; padding:10px; background:#2c1a11; color:var(--gold-light);">
+                💾 Baixar index.html
+              </button>
+            </div>
+          `
+        });
+      }
+    }
+
     function saveProductFromForm() {
       const idInput = document.getElementById('admin-prod-id').value;
       const name = document.getElementById('admin-prod-name').value.trim();
@@ -3651,11 +4053,19 @@
       const priceValue = parsePriceInput(document.getElementById('admin-prod-price').value);
 
       if (!name) {
-        alert("Por favor, digite o nome do produto.");
+        openLuxuryDialog({
+          title: "Nome Obrigatório",
+          message: "Por favor, digite o nome do produto.",
+          icon: "⚠️"
+        });
         return;
       }
       if (priceValue <= 0) {
-        alert("Por favor, digite um preço de venda válido (ex: 350,00).");
+        openLuxuryDialog({
+          title: "Preço Inválido",
+          message: "Por favor, digite um preço de venda válido (ex: 350,00 ou 1000).",
+          icon: "⚠️"
+        });
         return;
       }
 
@@ -3669,8 +4079,10 @@
         image = (category === 'bolsas') ? 'bolsa-tote.svg' : 'good-girl.jpg';
       }
 
+      let isEdit = false;
       if (idInput) {
         // Edit existing product
+        isEdit = true;
         const prodId = parseInt(idInput);
         const idx = perfumes.findIndex(p => p.id === prodId);
         if (idx !== -1) {
@@ -3695,23 +4107,62 @@
       renderProducts();
       closeAdminProductModal();
 
-      setTimeout(() => {
-        if (confirm(`✅ "${name}" foi salvo com sucesso na sua loja!\n\nDeseja baixar o arquivo "index.html" atualizado agora para enviar ao GitHub e atualizar seu site para todos os clientes?`)) {
-          exportUpdatedIndexHtml();
-        }
-      }, 350);
+      const hasToken = !!getGitHubToken();
+      if (hasToken) {
+        const actionLabel = isEdit ? `Atualização de "${name}"` : `Novo produto "${name}" adicionado`;
+        publishCatalogToGitHub(`${actionLabel} via Painel ADM AC Perfumes`);
+      } else {
+        openLuxuryDialog({
+          title: "Alterações Salvas!",
+          message: `<strong>"${name}"</strong> foi salvo com sucesso na sua loja!<br><br>Deseja ativar o salvamento direto no GitHub para atualizar o site automaticamente sem precisar baixar arquivos, ou prefere baixar o <strong>index.html</strong> agora?`,
+          icon: "💾",
+          showGitHubAction: true
+        });
+      }
     }
 
     function deleteProduct(id) {
       const p = perfumes.find(item => item.id === id);
       if (!p) return;
-      if (confirm(`Deseja realmente excluir o produto "${p.name}" da loja?`)) {
-        perfumes = perfumes.filter(item => item.id !== id);
-        cart = cart.filter(item => item.id !== id);
-        saveCart();
-        saveCustomCatalog();
-        renderProducts();
-        showToast(`"${p.name}" foi removido do catálogo.`);
+
+      openLuxuryDialog({
+        title: "Confirmar Exclusão",
+        message: `Tem certeza de que deseja remover o produto <strong>"${p.name}"</strong> da sua loja?`,
+        icon: "🗑️",
+        customActions: `
+          <div style="display: flex; gap: 10px; width: 100%;">
+            <button type="button" class="btn-admin-action btn-admin-logout" onclick="closeLuxuryDialog()" style="flex: 1; padding: 11px; justify-content: center; font-size: 13px;">
+              Cancelar
+            </button>
+            <button type="button" class="btn-admin-action" onclick="confirmDeleteProduct(${p.id})" style="flex: 1; padding: 11px; justify-content: center; font-size: 13px; background: #dc3545; color: #ffffff; border: none; font-weight: 700;">
+              🗑️ Excluir Produto
+            </button>
+          </div>
+        `
+      });
+    }
+
+    function confirmDeleteProduct(id) {
+      const p = perfumes.find(item => item.id === id);
+      const name = p ? p.name : 'Produto';
+
+      perfumes = perfumes.filter(item => item.id !== id);
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+      saveCustomCatalog();
+      renderProducts();
+      showToast(`"${name}" foi removido do catálogo.`);
+
+      const hasToken = !!getGitHubToken();
+      if (hasToken) {
+        publishCatalogToGitHub(`Remoção de "${name}" via Painel ADM`);
+      } else {
+        openLuxuryDialog({
+          title: "Produto Removido",
+          message: `"${name}" foi excluído com sucesso da loja.<br><br>Para atualizar a versão online no GitHub Pages para os clientes, você pode ativar o salvamento automático ou baixar o arquivo <strong>index.html</strong>.`,
+          icon: "✅",
+          showGitHubAction: true
+        });
       }
     }
 
@@ -3724,20 +4175,7 @@
     function exportUpdatedIndexHtml() {
       showToast("Gerando index.html atualizado...");
 
-      // Prepare clean serialization of current perfumes array
-      const serializedCatalog = 'let perfumes = ' + JSON.stringify(perfumes, null, 2) + ';';
-
-      // Read document outerHTML
-      let html = document.documentElement.outerHTML;
-
-      // Ensure exported file starts in clean user mode (not admin mode)
-      html = html.replace(' class="admin-mode-active"', '').replace('admin-mode-active', '');
-
-      // Replace the inlined database with the new array
-      html = html.replace(/let perfumes = \[[\s\S]*?\n\s*\];/, serializedCatalog);
-
-      // Create downloadable blob
-      const fullDoc = '<!DOCTYPE html>\n<html lang="pt-BR">\n' + html + '\n</html>';
+      const fullDoc = getCleanUpdatedHtml();
       const blob = new Blob([fullDoc], { type: 'text/html;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -3748,7 +4186,11 @@
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      alert("🎉 Sucesso!\n\nO arquivo 'index.html' atualizado com todos os produtos foi baixado para o seu computador!\n\nAgora basta arrastar esse 'index.html' para a página de upload do seu GitHub para publicar as novidades para todos os seus clientes.");
+      openLuxuryDialog({
+        title: "Download Concluído!",
+        message: `O arquivo <strong>index.html</strong> atualizado foi baixado para o seu computador!<br><br>Agora basta arrastar esse <strong>index.html</strong> para a página de upload do seu repositório no GitHub para atualizar a loja online para todos os clientes.`,
+        icon: "💾"
+      });
     }
 
     // Keyboard shortcut: Ctrl + Alt + A to toggle Admin login
@@ -3775,6 +4217,7 @@
     } catch(e) {}
 
     checkAdminSession();
+    updateGitHubStatusUI();
 
     updateCartBadges();
     renderProducts();
