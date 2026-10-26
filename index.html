@@ -2176,8 +2176,8 @@
       border-radius: var(--radius-md);
       box-shadow: 0 24px 60px rgba(0,0,0,0.5);
       width: 100%;
-      max-width: 580px;
-      max-height: 90vh;
+      max-width: 600px;
+      max-height: 92vh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -2185,14 +2185,24 @@
       border: 1px solid var(--border-color);
     }
 
+    .admin-modal form {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      margin: 0;
+    }
+
     .admin-modal-header {
       background: linear-gradient(135deg, #26160d 0%, #150a05 100%);
       color: #f7ede2;
-      padding: 16px 20px;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 2px solid var(--gold-main);
+      flex-shrink: 0;
     }
 
     .admin-modal-header h3 {
@@ -2222,9 +2232,12 @@
     .admin-modal-body {
       padding: 20px;
       overflow-y: auto;
+      flex: 1;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       gap: 14px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .admin-form-group {
@@ -2303,7 +2316,9 @@
       border-top: 1px solid var(--border-color);
       display: flex;
       justify-content: flex-end;
-      gap: 10px;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
     }
 
     .footer-admin-link {
@@ -2909,7 +2924,12 @@
     <div class="admin-modal">
       <div class="admin-modal-header">
         <h3 id="admin-modal-title"><span>✨</span> Cadastrar Produto</h3>
-        <button type="button" class="admin-modal-close" onclick="closeAdminProductModal()">&times;</button>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <button type="button" class="btn-admin-action" onclick="document.getElementById('admin-product-form').requestSubmit();" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: #ffffff; padding: 7px 16px; font-size: 13px; font-weight: 800; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); border: none; cursor: pointer;">
+            💾 Salvar
+          </button>
+          <button type="button" class="admin-modal-close" onclick="closeAdminProductModal()">&times;</button>
+        </div>
       </div>
       <form id="admin-product-form" onsubmit="event.preventDefault(); saveProductFromForm();">
         <input type="hidden" id="admin-prod-id">
@@ -2992,10 +3012,19 @@
             <label for="admin-prod-desc">Descrição Olfativa / Detalhes</label>
             <textarea id="admin-prod-desc" class="admin-form-control" rows="3" placeholder="Descreva as notas olfativas, fixação ou detalhes luxuosos do produto..."></textarea>
           </div>
+
+          <div style="background: #eef9f2; border: 1px solid #b7ebc9; padding: 12px 16px; border-radius: 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+            <span style="font-size: 13px; color: #1c5232; font-weight: 600;">✨ Concluiu a edição?</span>
+            <button type="submit" class="btn-admin-action" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: #ffffff; padding: 10px 22px; font-size: 14px; font-weight: 800; border-radius: 6px; border: none; cursor: pointer; box-shadow: 0 2px 8px rgba(37, 211, 102, 0.4);">
+              💾 SALVAR ALTERAÇÕES
+            </button>
+          </div>
         </div>
         <div class="admin-modal-footer">
           <button type="button" class="btn-admin-action btn-admin-logout" onclick="closeAdminProductModal()">Cancelar</button>
-          <button type="submit" class="btn-admin-action">💾 Salvar Produto</button>
+          <button type="submit" class="btn-admin-action" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: #ffffff; padding: 12px 28px; font-size: 14px; font-weight: 800; border-radius: 8px; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);">
+            💾 SALVAR ALTERAÇÕES
+          </button>
         </div>
       </form>
     </div>
@@ -3602,6 +3631,16 @@
       reader.readAsDataURL(file);
     }
 
+    function parsePriceInput(val) {
+      if (!val) return 0;
+      let s = val.toString().replace('R$', '').trim();
+      if (s.includes(',')) {
+        s = s.replace(/\./g, '').replace(',', '.');
+      }
+      const num = parseFloat(s);
+      return isNaN(num) ? 0 : num;
+    }
+
     function saveProductFromForm() {
       const idInput = document.getElementById('admin-prod-id').value;
       const name = document.getElementById('admin-prod-name').value.trim();
@@ -3609,14 +3648,13 @@
       const category = document.getElementById('admin-prod-category').value;
       const gender = document.getElementById('admin-prod-gender').value;
       const volume = document.getElementById('admin-prod-volume').value.trim();
-      const rawPrice = document.getElementById('admin-prod-price').value.replace('R$', '').trim().replace(/\./g, '').replace(',', '.');
-      const priceValue = parseFloat(rawPrice);
+      const priceValue = parsePriceInput(document.getElementById('admin-prod-price').value);
 
       if (!name) {
         alert("Por favor, digite o nome do produto.");
         return;
       }
-      if (isNaN(priceValue) || priceValue <= 0) {
+      if (priceValue <= 0) {
         alert("Por favor, digite um preço de venda válido (ex: 350,00).");
         return;
       }
@@ -3656,6 +3694,12 @@
       saveCustomCatalog();
       renderProducts();
       closeAdminProductModal();
+
+      setTimeout(() => {
+        if (confirm(`✅ "${name}" foi salvo com sucesso na sua loja!\n\nDeseja baixar o arquivo "index.html" atualizado agora para enviar ao GitHub e atualizar seu site para todos os clientes?`)) {
+          exportUpdatedIndexHtml();
+        }
+      }, 350);
     }
 
     function deleteProduct(id) {
