@@ -5305,7 +5305,7 @@
   <div id="admin-product-modal" class="admin-modal-overlay">
     <div class="admin-modal">
       <div class="admin-modal-header">
-        <h3 id="admin-modal-title"><span>✨</span> Cadastrar Produto</h3>
+        <h3 id="admin-modal-title"><span>✏️</span> Editar "Atheeri"</h3>
         <div style="display: flex; align-items: center; gap: 10px;">
           <button type="button" class="btn-admin-action" onclick="document.getElementById('admin-product-form').requestSubmit();" style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: #ffffff; padding: 7px 16px; font-size: 13px; font-weight: 800; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); border: none; cursor: pointer;">
             💾 Salvar
@@ -5314,7 +5314,7 @@
         </div>
       </div>
       <form id="admin-product-form" onsubmit="event.preventDefault(); saveProductFromForm();">
-        <input type="hidden" id="admin-prod-id" value="">
+        <input type="hidden" id="admin-prod-id" value="116">
         <div class="admin-modal-body">
           <div class="admin-form-row">
             <div class="admin-form-group">
@@ -5361,7 +5361,7 @@
           <div class="admin-form-row">
             <div class="admin-form-group">
               <label for="admin-prod-badge-text">Texto do Selo (Badge)</label>
-              <input type="text" id="admin-prod-badge-text" class="admin-form-control" placeholder="Ex: Best-Seller, Lançamento" data-autofilled="1">
+              <input type="text" id="admin-prod-badge-text" class="admin-form-control" placeholder="Ex: Best-Seller, Lançamento" data-autofilled="0">
             </div>
             <div class="admin-form-group">
               <label for="admin-prod-badge-class">Cor do Selo</label>
@@ -5514,7 +5514,7 @@
     "id": 116,
     "name": "Atheeri",
     "brand": "Lattafa Perfumes",
-    "volume": "Eau de pafum",
+    "volume": "Eau de Pafum 100ml",
     "priceFormatted": "R$ 610,00",
     "priceValue": 610,
     "category": "arabes",
@@ -7411,5 +7411,6 @@
     renderCart();
   </script>
 
-<div id="toast-notice" class="toast-notice show"><span>✨</span> <span>"Atheeri" adicionado ao catálogo!</span></div></body></html>
+<div id="toast-notice" class="toast-notice show"><span>✨</span> <span>"Atheeri" atualizado com sucesso!</span></div>
+</body></html>
 </html>
